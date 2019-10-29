@@ -23,4 +23,10 @@
         <item name="android:background">@drawable/custom_edittext</item>
     </style>
 
+    <style name="custom_label_bold">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
 </resources>
