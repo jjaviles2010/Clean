@@ -4,4 +4,11 @@
     <string name="etFullName">nome completo</string>
     <string name="etCPF">CPF (ex.: 123.456.789-10)</string>
     <string name="etPhone">telefone (e.x.: (11) 12345-6789)</string>
+    <string name="tvAccessMyAccount">Acessar minha conta</string>
+    <string name="etPassword">senha</string>
+    <string name="btEnter">Entrar</string>
+    <string name="tvForgotPassword">Esqueceu sua senha?</string>
+    <string name="tvFirstTimeHere">Primeira vez aqui?</string>
+    <string name="btSignupClient">Sim e estou procurando uma diarista</string>
+    <string name="btSignupCleaner">Sim e sou uma diarista</string>
 </resources>
