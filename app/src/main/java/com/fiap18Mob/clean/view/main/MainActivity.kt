@@ -1,7 +1,8 @@
-package com.fiap18Mob.clean
+package com.fiap18Mob.clean.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.fiap18Mob.clean.R
 
 class MainActivity : AppCompatActivity() {
 
