@@ -3,5 +3,8 @@
     <string name="tvPersonalData">Dados pessoais</string>
     <string name="etFullName">nome completo</string>
     <string name="etCPF">CPF (ex.: 123.456.789-10)</string>
-    <string name="etPhone">telefone (e.x.: (11) 12345-6789)</string>
+    <string name="etPhone">telefone (ex.: (11) 12345-6789)</string>
+    <string name="tvAddress">Endereço</string>
+    <string name="etZipCodeHint">CEP (ex.: 01234-567)</string>
+    <string name="etStreetAddressHint">logradouro (rua, av, pç, etc)</string>
 </resources>

@@ -4,4 +4,7 @@
     <string name="etFullName">full name</string>
     <string name="etCPF">CPF (e.g.: 123.456.789-10)</string>
     <string name="etPhone">phone (e.g.: (11) 12345-6789)</string>
+    <string name="tvAddress">Address</string>
+    <string name="etZipCodeHint">Zip code (e.g.: 01234-567)</string>
+    <string name="etStreetAddressHint">street address</string>
 </resources>
