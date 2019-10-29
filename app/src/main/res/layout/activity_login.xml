@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.login.LoginActivity">
+
+    <Button
+        android:id="@+id/btSingupCleaner"
+        style="@style/custom_button_dark"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/btSignupCleaner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btSingupClient" />
+
+    <Button
+        android:id="@+id/btSingupClient"
+        style="@style/custom_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/btSignupClient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFirstTimeHere" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="205dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/clean_logo" />
+
+    <TextView
+        android:id="@+id/tvAccessMyAccount"
+        style="@style/custom_label_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/tvAccessMyAccount"
+        app:layout_constraintEnd_toEndOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <TextView
+        android:id="@+id/tvFirstTimeHere"
+        style="@style/custom_label_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="@string/tvFirstTimeHere"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btEnter" />
+
+    <EditText
+        android:id="@+id/edEmail"
+        style="@style/custom_edittext"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="e-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/tvAccessMyAccount"
+        app:layout_constraintStart_toStartOf="@+id/tvAccessMyAccount"
+        app:layout_constraintTop_toBottomOf="@+id/tvAccessMyAccount" />
+
+    <EditText
+        android:id="@+id/edPassword"
+        style="@style/custom_edittext"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/etPassword"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/tvAccessMyAccount"
+        app:layout_constraintStart_toStartOf="@+id/tvAccessMyAccount"
+        app:layout_constraintTop_toBottomOf="@+id/edEmail" />
+
+    <Button
+        android:id="@+id/btEnter"
+        style="@style/custom_button_secondary"
+        android:layout_width="126dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/btEnter"
+        app:layout_constraintEnd_toEndOf="@+id/edPassword"
+        app:layout_constraintTop_toBottomOf="@+id/edPassword" />
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvForgotPassword"
+        app:layout_constraintBottom_toBottomOf="@+id/btEnter"
+        app:layout_constraintStart_toStartOf="@+id/edPassword"
+        app:layout_constraintTop_toTopOf="@+id/btEnter" />
+</androidx.constraintlayout.widget.ConstraintLayout>

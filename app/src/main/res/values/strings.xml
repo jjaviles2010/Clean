@@ -11,4 +11,11 @@
     <string name="etAddressCoplementHint">complement</string>
     <string name="etNeighborhood">neighborhood</string>
     <string name="etCityHint">city</string>
+    <string name="tvAccessMyAccount">Access my account</string>
+    <string name="etPassword">Password</string>
+    <string name="btEnter">Enter</string>
+    <string name="tvForgotPassword">Forgot password?</string>
+    <string name="tvFirstTimeHere">First time here?</string>
+    <string name="btSignupClient">Yes and I am looking for a cleaner</string>
+    <string name="btSignupCleaner">Yes and I am a cleaner</string>
 </resources>

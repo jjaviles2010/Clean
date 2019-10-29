@@ -15,6 +15,20 @@
         <item name="android:background">@drawable/custom_button</item>
     </style>
 
+    <style name="custom_button_dark">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextIcon</item>
+        <item name="android:background">@drawable/custom_button_dark</item>
+    </style>
+
+    <style name="custom_button_secondary">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextIcon</item>
+        <item name="android:background">@drawable/custom_button_secondary</item>
+    </style>
+
     <style name="custom_edittext">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -27,6 +41,12 @@
         <item name="android:textColor">@color/primaryText</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="custom_textview_link">
+        <item name="android:textColor">@color/secondaryText</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>
