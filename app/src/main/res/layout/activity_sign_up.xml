@@ -11,9 +11,55 @@
         style="@style/custom_label_bold"
         android:layout_width="201dp"
         android:layout_height="33dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text="@string/tvPersonalData"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        style="@style/custom_edittext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.202"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPersonalData"
+        android:hint="@string/etFullName"/>
+
+    <EditText
+        android:id="@+id/etCPF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="numberSigned"
+        app:layout_constraintEnd_toEndOf="@+id/etFullName"
+        app:layout_constraintStart_toStartOf="@+id/etFullName"
+        app:layout_constraintTop_toBottomOf="@+id/etFullName"
+        style="@style/custom_edittext"
+        android:hint="@string/etCPF"/>
+
+    <EditText
+        android:id="@+id/etPhone"
+        style="@style/custom_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="@string/etPhone"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="@+id/etCPF"
+        app:layout_constraintStart_toStartOf="@+id/etCPF"
+        app:layout_constraintTop_toBottomOf="@+id/etCPF" />
 </androidx.constraintlayout.widget.ConstraintLayout>

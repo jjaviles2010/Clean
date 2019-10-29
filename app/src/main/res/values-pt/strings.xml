@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="tvPersonalData">Dados pessoais</string>
+    <string name="etFullName">nome completo</string>
+    <string name="etCPF">CPF (ex.: 123.456.789-10)</string>
+    <string name="etPhone">telefone (e.x.: (11) 12345-6789)</string>
 </resources>
