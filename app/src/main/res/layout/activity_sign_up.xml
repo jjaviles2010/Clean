@@ -19,40 +19,34 @@
 
     <EditText
         android:id="@+id/etFullName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/custom_edittext"
         android:layout_marginStart="24dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
+        android:hint="@string/etFullName"
         android:inputType="textPersonName"
-        style="@style/custom_edittext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPersonalData"
-        android:hint="@string/etFullName"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvPersonalData" />
 
     <EditText
         android:id="@+id/etCPF"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/custom_edittext"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
+        android:hint="@string/etCPF"
         android:inputType="numberSigned"
         app:layout_constraintEnd_toEndOf="@+id/etFullName"
         app:layout_constraintStart_toStartOf="@+id/etFullName"
-        app:layout_constraintTop_toBottomOf="@+id/etFullName"
-        style="@style/custom_edittext"
-        android:hint="@string/etCPF"/>
+        app:layout_constraintTop_toBottomOf="@+id/etFullName" />
 
     <EditText
         android:id="@+id/etPhone"
         style="@style/custom_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
@@ -75,30 +69,84 @@
 
     <EditText
         android:id="@+id/etZipCode"
+        style="@style/custom_edittext"
         android:layout_width="358dp"
-        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="@string/etZipCodeHint"
         android:inputType="numberSigned"
         app:layout_constraintEnd_toEndOf="@+id/etPhone"
-        android:hint="@string/etZipCodeHint"
-        style="@style/custom_edittext"
         app:layout_constraintStart_toStartOf="@+id/tvAddress"
         app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
 
     <EditText
         android:id="@+id/etStreetAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/custom_edittext"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        style="@style/custom_edittext"
         android:hint="@string/etStreetAddressHint"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/etZipCode"
         app:layout_constraintStart_toStartOf="@+id/etZipCode"
         app:layout_constraintTop_toBottomOf="@+id/etZipCode" />
+
+    <EditText
+        android:id="@+id/etNumber"
+        android:layout_width="170dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/etNumberHint"
+        app:layout_constraintStart_toStartOf="@+id/etStreetAddress"
+        app:layout_constraintTop_toBottomOf="@+id/etStreetAddress"
+        style="@style/custom_edittext"/>
+
+    <EditText
+        android:id="@+id/etAddressComp"
+        android:layout_width="170dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/etAddressCoplementHint"
+        app:layout_constraintEnd_toEndOf="@+id/etStreetAddress"
+        app:layout_constraintTop_toBottomOf="@+id/etStreetAddress"
+        style="@style/custom_edittext"/>
+
+    <EditText
+        android:id="@+id/etNeighborhood"
+        style="@style/custom_edittext"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="@string/etNeighborhood"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etStreetAddress"
+        app:layout_constraintStart_toStartOf="@+id/etStreetAddress"
+        app:layout_constraintTop_toBottomOf="@+id/etNumber" />
+
+    <EditText
+        android:id="@+id/etCity"
+        style="@style/custom_edittext"
+        android:layout_width="285dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/etCityHint"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/etNeighborhood"
+        app:layout_constraintTop_toBottomOf="@+id/etNeighborhood" />
+
+    <Spinner
+        android:id="@+id/spStates"
+        android:layout_width="67dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etCity"
+        app:layout_constraintEnd_toEndOf="@+id/etNeighborhood"
+        app:layout_constraintStart_toEndOf="@+id/etCity"
+        app:layout_constraintTop_toTopOf="@+id/etCity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

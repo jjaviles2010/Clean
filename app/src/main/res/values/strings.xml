@@ -7,4 +7,8 @@
     <string name="tvAddress">Address</string>
     <string name="etZipCodeHint">Zip code (e.g.: 01234-567)</string>
     <string name="etStreetAddressHint">street address</string>
+    <string name="etNumberHint">number</string>
+    <string name="etAddressCoplementHint">complement</string>
+    <string name="etNeighborhood">neighborhood</string>
+    <string name="etCityHint">city</string>
 </resources>

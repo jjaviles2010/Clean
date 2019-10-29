@@ -7,4 +7,8 @@
     <string name="tvAddress">Endereço</string>
     <string name="etZipCodeHint">CEP (ex.: 01234-567)</string>
     <string name="etStreetAddressHint">logradouro (rua, av, pç, etc)</string>
+    <string name="etNumberHint">número</string>
+    <string name="etAddressCoplementHint">complemento</string>
+    <string name="etNeighborhood">bairro</string>
+    <string name="etCityHint">cidade</string>
 </resources>
