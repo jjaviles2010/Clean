@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Clean</string>
+    <string name="app_name" translatable="false">Clean</string>
+    <string name="tvPersonalData">Personal data</string>
+    <string name="etFullName">full name</string>
+    <string name="etCPF">CPF (e.g.: 123.456.789-10)</string>
+    <string name="etPhone">phone (e.g.: (11) 12345-6789)</string>
 </resources>
