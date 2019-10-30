@@ -18,4 +18,9 @@
     <string name="tvFirstTimeHere">Primeira vez aqui?</string>
     <string name="btSignupClient">Sim e estou procurando uma diarista</string>
     <string name="btSignupCleaner">Sim e sou uma diarista</string>
+    <string name="tvLogin">Login</string>
+    <string name="etEmail">e-mail</string>
+    <string name="etPasswordHint">senha</string>
+    <string name="etConfirmPasswordHint">confirmar senha</string>
+    <string name="btnSendSignUp">Enviar</string>
 </resources>

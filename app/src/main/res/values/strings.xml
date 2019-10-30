@@ -18,4 +18,9 @@
     <string name="tvFirstTimeHere">First time here?</string>
     <string name="btSignupClient">Yes and I am looking for a cleaner</string>
     <string name="btSignupCleaner">Yes and I am a cleaner</string>
+    <string name="tvLogin">Login</string>
+    <string name="etEmail">e-mail</string>
+    <string name="etPasswordHint">password</string>
+    <string name="etConfirmPasswordHint">confirm password</string>
+    <string name="btnSendSignUp">Send</string>
 </resources>

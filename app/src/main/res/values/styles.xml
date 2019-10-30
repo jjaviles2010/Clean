@@ -40,7 +40,7 @@
     <style name="custom_label_bold">
         <item name="android:textColor">@color/primaryText</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="custom_textview_link">

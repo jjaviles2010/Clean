@@ -21,7 +21,7 @@
         android:id="@+id/etFullName"
         style="@style/custom_edittext"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="@string/etFullName"
@@ -35,7 +35,7 @@
         android:id="@+id/etCPF"
         style="@style/custom_edittext"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="@string/etCPF"
@@ -48,7 +48,7 @@
         android:id="@+id/etPhone"
         style="@style/custom_edittext"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="@string/etPhone"
@@ -62,7 +62,7 @@
         style="@style/custom_label_bold"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/tvAddress"
         app:layout_constraintStart_toStartOf="@+id/etPhone"
         app:layout_constraintTop_toBottomOf="@+id/etPhone" />
@@ -83,7 +83,7 @@
         android:id="@+id/etStreetAddress"
         style="@style/custom_edittext"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="@string/etStreetAddressHint"
@@ -94,31 +94,31 @@
 
     <EditText
         android:id="@+id/etNumber"
+        style="@style/custom_edittext"
         android:layout_width="170dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="@string/etNumberHint"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/etStreetAddress"
-        app:layout_constraintTop_toBottomOf="@+id/etStreetAddress"
-        style="@style/custom_edittext"/>
+        app:layout_constraintTop_toBottomOf="@+id/etStreetAddress" />
 
     <EditText
         android:id="@+id/etAddressComp"
+        style="@style/custom_edittext"
         android:layout_width="170dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/etAddressCoplementHint"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/etStreetAddress"
-        app:layout_constraintTop_toBottomOf="@+id/etStreetAddress"
-        style="@style/custom_edittext"/>
+        app:layout_constraintTop_toBottomOf="@+id/etStreetAddress" />
 
     <EditText
         android:id="@+id/etNeighborhood"
         style="@style/custom_edittext"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="@string/etNeighborhood"
@@ -132,7 +132,7 @@
         style="@style/custom_edittext"
         android:layout_width="285dp"
         android:layout_height="38dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/etCityHint"
         android:inputType="textPersonName"
@@ -148,5 +148,70 @@
         app:layout_constraintEnd_toEndOf="@+id/etNeighborhood"
         app:layout_constraintStart_toEndOf="@+id/etCity"
         app:layout_constraintTop_toTopOf="@+id/etCity" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/tvLogin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCity"
+        style="@style/custom_label_bold"/>
+
+    <EditText
+        android:id="@+id/etEmail"
+        style="@style/custom_edittext"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLogin"
+        android:hint="@string/etEmail"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        style="@style/custom_edittext"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="@string/etPasswordHint"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/etEmail"
+        app:layout_constraintStart_toStartOf="@+id/etEmail"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <EditText
+        android:id="@+id/etConfirmPassword"
+        style="@style/custom_edittext"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="@string/etConfirmPasswordHint"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/etPassword"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <Button
+        android:id="@+id/btnSendSignUp"
+        style="@style/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/btnSendSignUp"
+        app:layout_constraintEnd_toEndOf="@+id/etConfirmPassword"
+        app:layout_constraintStart_toStartOf="@+id/etConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etConfirmPassword" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
