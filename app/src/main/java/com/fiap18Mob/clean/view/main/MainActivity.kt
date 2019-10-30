@@ -16,13 +16,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        btnTest.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
+
     }
 
-
-    fun showSignUp(view: View) {
-        val intent = Intent(this, SignUpActivity::class.java)
-        startActivity(intent)
-    }
 
     fun showAbout(view: View) {
         startActivity(Intent(this@MainActivity, AboutActivity::class.java))
