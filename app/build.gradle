@@ -25,6 +25,10 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 dependencies {
     def lifecycle_version = "2.0.0"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -38,5 +42,16 @@ dependencies {
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
+    //Biblioteca para consumir webservice
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    //Biblioteca para realizar o parse json para objeto/objeto para json
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    //Biblioteca para fazer debug das requests
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    //Injecao de dependencia
+    implementation "org.koin:koin-android-viewmodel:2.0.1"
+    implementation "org.koin:koin-android:2.0.1"
+    //Biblioteca da airbnb para pegar animacoes
     implementation 'com.airbnb.android:lottie:3.1.0'
 }
