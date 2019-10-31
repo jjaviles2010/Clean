@@ -4,10 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import com.fiap18Mob.clean.R
+import com.fiap18Mob.clean.view.about.AboutActivity
 import com.fiap18Mob.clean.view.signup.SignUpActivity
-import kotlinx.android.synthetic.main.activity_about.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

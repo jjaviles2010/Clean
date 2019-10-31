@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.login.LoginActivity"></activity>
-        <activity android:name=".view.main.AboutActivity" />
+        <activity android:name=".view.about.AboutActivity" />
         <activity android:name=".view.signup.SignUpActivity"></activity>
-        <activity android:name=".view.main.SplashScreenActivity">
+        <activity android:name=".view.splash.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

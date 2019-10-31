@@ -1,10 +1,13 @@
-package com.fiap18Mob.clean.view.main
+package com.fiap18Mob.clean.view.splash
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.WindowManager
 import com.fiap18Mob.clean.R
+import com.fiap18Mob.clean.view.main.MainActivity
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -13,7 +16,8 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         val handle = Handler()
-        handle.postDelayed(Runnable { mostrarLogin() }, 1800)
+        handle.postDelayed(Runnable { mostrarLogin() }, 5000)
+
     }
 
     public fun mostrarLogin() {
@@ -21,4 +25,6 @@ class SplashScreenActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+
 }
