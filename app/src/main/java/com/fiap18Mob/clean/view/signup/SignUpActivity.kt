@@ -2,12 +2,14 @@ package com.fiap18Mob.clean.view.signup
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.fiap18Mob.clean.R
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -24,6 +26,14 @@ class SignUpActivity : AppCompatActivity() {
 
         etZipCode.setOnFocusChangeListener{ view, b -> searchAddress(b) }
 
+        signUpViewModel.isLoading.observe(this, Observer {
+            if (it == true) {
+                containerLoading.visibility = View.VISIBLE
+            } else {
+                containerLoading.visibility = View.GONE
+            }
+        })
+
         signUpViewModel.messageError.observe(this, Observer {
             if(it != "")
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
@@ -31,17 +41,10 @@ class SignUpActivity : AppCompatActivity() {
 
         signUpViewModel.address.observe(this, Observer {
             if(it != null)
-                Toast.makeText(this, it.logradouro, Toast.LENGTH_LONG).show()
+                showAddressInfo()
         })
     }
 
-    private fun searchAddress(b: Boolean) {
-
-        if(b) {
-            signUpViewModel.getAddress(etZipCode.text.toString())
-        }
-
-    }
 
     private fun populateSpinner() {
 
@@ -52,7 +55,23 @@ class SignUpActivity : AppCompatActivity() {
         )
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
         spStates.adapter = adapter
+    }
+
+
+    private fun searchAddress(b: Boolean) {
+
+        if(!b) {
+            signUpViewModel.getAddress(etZipCode.text.toString())
+        }
+
+    }
+
+    private fun showAddressInfo() {
+        etStreetAddress.setText(signUpViewModel.address.value?.logradouro)
+        etNeighborhood.setText(signUpViewModel.address.value?.bairro)
+        etCity.setText(signUpViewModel.address.value?.localidade)
+        val stateToSelect = resources.getStringArray(R.array.statesList).indexOf(signUpViewModel.address.value?.uf)
+        spStates.setSelection(stateToSelect)
     }
 }
