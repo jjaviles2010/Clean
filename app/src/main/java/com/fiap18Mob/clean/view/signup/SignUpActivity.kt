@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.R
+import com.fiap18Mob.clean.utils.Mask
 import com.fiap18Mob.clean.utils.isValidEmail
 import com.fiap18Mob.clean.utils.validate
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -24,7 +25,12 @@ class SignUpActivity : AppCompatActivity() {
 
         populateSpinner()
 
+        etCPF.addTextChangedListener(Mask.mask("###.###.###-##", etCPF))
+
+        etZipCode.addTextChangedListener(Mask.mask("#####-###", etZipCode))
         etZipCode.setOnFocusChangeListener { view, b -> searchAddress(b) }
+
+        etPhone.addTextChangedListener(Mask.mask("(##) #####-####", etPhone))
 
         signUpViewModel.isLoading.observe(this, Observer {
             if (it == true) {
@@ -64,7 +70,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun searchAddress(b: Boolean) {
         if(!b) {
-            signUpViewModel.getAddress(etZipCode.text.toString())
+            signUpViewModel.getAddress(Mask.replaceChars(etZipCode.text.toString()))
         }
     }
 
