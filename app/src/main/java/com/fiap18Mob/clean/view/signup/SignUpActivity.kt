@@ -28,7 +28,7 @@ class SignUpActivity : AppCompatActivity() {
         etCPF.addTextChangedListener(Mask.mask("###.###.###-##", etCPF))
 
         etZipCode.addTextChangedListener(Mask.mask("#####-###", etZipCode))
-        etZipCode.setOnFocusChangeListener { view, b -> searchAddress(b) }
+        etZipCode.setOnFocusChangeListener { view, b -> searchAddress(b, etZipCode.text.toString()) }
 
         etPhone.addTextChangedListener(Mask.mask("(##) #####-####", etPhone))
 
@@ -68,8 +68,8 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-    private fun searchAddress(b: Boolean) {
-        if(!b) {
+    private fun searchAddress(b: Boolean, zipCode: String) {
+        if(!b && zipCode.length == 9) {
             signUpViewModel.getAddress(Mask.replaceChars(etZipCode.text.toString()))
         }
     }
