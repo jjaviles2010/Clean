@@ -51,7 +51,6 @@ class SignUpActivity : AppCompatActivity() {
 
 
     private fun populateSpinner() {
-
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.statesList,
@@ -64,11 +63,9 @@ class SignUpActivity : AppCompatActivity() {
 
 
     private fun searchAddress(b: Boolean) {
-
         if(!b) {
             signUpViewModel.getAddress(etZipCode.text.toString())
         }
-
     }
 
     private fun showAddressInfo() {
@@ -87,24 +84,30 @@ class SignUpActivity : AppCompatActivity() {
     private fun validateFields(): Boolean = (validPersonalData() && validAddressData() && validLoginData())
 
     private fun validPersonalData(): Boolean {
-        etCPF.validate("CPF required") { s -> s.isNotEmpty() }
+        etFullName.validate(getString(R.string.nameRequiredMsg)) { s -> s.isNotEmpty() }
+        etCPF.validate(getString(R.string.cpfRequiredMsg)) { s -> s.isNotEmpty() }
 
-        return etCPF.error == null
+        return etFullName.error == null && etCPF.error == null
     }
 
     private fun validAddressData(): Boolean {
-        etZipCode.validate("Zip Code required") { s -> s.isNotEmpty() }
-        
-        return etZipCode.error == null
+        etZipCode.validate(getString(R.string.zipCodeRequiredMsg)) { s -> s.isNotEmpty() }
+        etStreetAddress.validate(getString(R.string.streetRequiredMsg)) { s -> s.isNotEmpty() }
+        etNumber.validate(getString(R.string.numberRequiredMsg)) { s -> s.isNotEmpty() }
+        etNeighborhood.validate(getString(R.string.etNeighborhoodRequired)) { s -> s.isNotEmpty() }
+        etCity.validate(getString(R.string.cityRequiredMsg)) { s -> s.isNotEmpty() }
+
+        return etZipCode.error == null && etStreetAddress.error == null && etNumber.error == null
+                && etNeighborhood.error == null && etCity.error == null
     }
 
     private fun validLoginData(): Boolean {
 
-        etEmail.validate("Invalid email") { s -> s.isValidEmail() }
-        etEmail.validate("Email required") { s -> s.isNotEmpty() }
-        etPassword.validate("Password required") { s -> s.isNotEmpty() }
-        etConfirmPassword.validate("Password required") { s -> s.isNotEmpty() }
-        etConfirmPassword.validate("Passwords not match") { s -> s.equals(etPassword.text.toString()) }
+        etEmail.validate(getString(R.string.emailRequiredMsg)) { s -> s.isNotEmpty() }
+        etEmail.validate(getString(R.string.emailInvalidMsg)) { s -> s.isValidEmail() }
+        etPassword.validate(getString(R.string.passwordRequiredMsg)) { s -> s.isNotEmpty() }
+        etConfirmPassword.validate(getString(R.string.passwordRequiredMsg)) { s -> s.isNotEmpty() }
+        etConfirmPassword.validate(getString(R.string.passwordNotMatchMsg)) { s -> s.equals(etPassword.text.toString()) }
 
         return etEmail.error == null && etPassword.error == null && etConfirmPassword.error == null
     }

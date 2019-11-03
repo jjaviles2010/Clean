@@ -23,4 +23,15 @@
     <string name="etPasswordHint">password</string>
     <string name="etConfirmPasswordHint">confirm password</string>
     <string name="btnSendSignUp">Send</string>
+    <string name="cpfRequiredMsg">CPF required</string>
+    <string name="zipCodeRequiredMsg">Zip Code required</string>
+    <string name="emailInvalidMsg">Invalid email</string>
+    <string name="emailRequiredMsg">Email required</string>
+    <string name="passwordRequiredMsg">Password required</string>
+    <string name="passwordNotMatchMsg">Passwords not match</string>
+    <string name="nameRequiredMsg">Required name</string>
+    <string name="streetRequiredMsg">Street required</string>
+    <string name="numberRequiredMsg">Number required</string>
+    <string name="etNeighborhoodRequired">Neighborhood required</string>
+    <string name="cityRequiredMsg">City required</string>
 </resources>

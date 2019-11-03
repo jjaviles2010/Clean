@@ -23,4 +23,15 @@
     <string name="etPasswordHint">senha</string>
     <string name="etConfirmPasswordHint">confirmar senha</string>
     <string name="btnSendSignUp">Enviar</string>
+    <string name="cpfRequiredMsg">CPF requerido</string>
+    <string name="zipCodeRequiredMsg">CEP requerido</string>
+    <string name="emailInvalidMsg">Email inválido</string>
+    <string name="emailRequiredMsg">Email requerido</string>
+    <string name="passwordRequiredMsg">Senha requerida</string>
+    <string name="passwordNotMatchMsg">Senhas diferentes</string>
+    <string name="nameRequiredMsg">Nome requerido</string>
+    <string name="streetRequiredMsg">Logradouro requerido</string>
+    <string name="numberRequiredMsg">Número requerido</string>
+    <string name="etNeighborhoodRequired">Bairro requerido</string>
+    <string name="cityRequiredMsg">Cidade requerida</string>
 </resources>
