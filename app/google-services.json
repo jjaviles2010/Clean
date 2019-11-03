@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "808528020677-8sgnqo1ergcr55q5toecl3f305lvicci.apps.googleusercontent.com",
+          "client_id": "808528020677-b892gkrpsucjj0go6jf3h1bkhgban4mr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.fiap18Mob.clean",
-            "certificate_hash": "80e63501b10ba2588deea23d1f57adbd46f46c29"
+            "certificate_hash": "8c060819d9d78766f2f88d4575c4b262622e6b1a"
           }
         },
         {

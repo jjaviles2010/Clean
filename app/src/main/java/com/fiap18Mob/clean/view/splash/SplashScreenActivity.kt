@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import com.fiap18Mob.clean.R
+import com.fiap18Mob.clean.view.login.LoginActivity
 import com.fiap18Mob.clean.view.main.MainActivity
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     public fun mostrarLogin() {
-        val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
+        val intent = Intent(this@SplashScreenActivity, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
