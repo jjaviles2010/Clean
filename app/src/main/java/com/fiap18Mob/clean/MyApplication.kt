@@ -2,6 +2,7 @@ package com.fiap18Mob.clean
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import com.fiap18Mob.clean.di.dbModule
 import com.fiap18Mob.clean.di.networkModule
 import com.fiap18Mob.clean.di.repositoryModule
 import com.fiap18Mob.clean.di.viewModelModule
@@ -13,7 +14,9 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Stetho.initializeWithDefaults(this)
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this)
+        }
 
         startKoin {
             androidLogger()
@@ -22,7 +25,8 @@ class MyApplication : Application() {
                 listOf(
                     viewModelModule,
                     networkModule,
-                    repositoryModule
+                    repositoryModule,
+                    dbModule
                 )
             )
         }

@@ -55,7 +55,6 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-
     private fun populateSpinner() {
         val adapter = ArrayAdapter.createFromResource(
             this,
@@ -121,4 +120,29 @@ class SignUpActivity : AppCompatActivity() {
     private fun submitData() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        populateUserData()
+        saveUserDataLocally()
+    }
+
+    private fun populateUserData() {
+        signUpViewModel.user.value?.cpf = Mask.replaceChars(etCPF.text.toString())
+        signUpViewModel.user.value?.nome = etFullName.text.toString()
+        signUpViewModel.user.value?.phoneNumber = Mask.replaceChars(etPhone.text.toString())
+        signUpViewModel.user.value?.zipCode = Mask.replaceChars(etZipCode.text.toString())
+        signUpViewModel.user.value?.street = etStreetAddress.text.toString()
+        signUpViewModel.user.value?.number = etNumber.text as Int
+        signUpViewModel.user.value?.complement = etAddressComp.text.toString()
+        signUpViewModel.user.value?.neighborhood = etNeighborhood.text.toString()
+        signUpViewModel.user.value?.city = etCity.text.toString()
+        signUpViewModel.user.value?.uf = spStates.selectedItem.toString()
+        signUpViewModel.user.value?.email = etEmail.text.toString()
+    }
+
+    fun saveUserDataLocally() {
+        signUpViewModel.insertUser()
+    }
+
 }
