@@ -3,7 +3,6 @@ package com.fiap18Mob.clean.view.signup
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fiap18Mob.clean.model.Address
 import com.fiap18Mob.clean.model.User
@@ -41,9 +40,8 @@ class SignUpViewModel(application: Application,
         user.value = userRepository.getUser(cpf) as? User
     }
 
-    fun insertUser() = viewModelScope.launch (Dispatchers.IO) {
-        if(this@SignUpViewModel.user.value != null)
-            userRepository.insertUser(this@SignUpViewModel.user.value!!)
+    fun insertUser(user: User) = viewModelScope.launch (Dispatchers.IO) {
+        userRepository.insertUser(user)
     }
 
 }
