@@ -7,17 +7,19 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.R
+import com.fiap18Mob.clean.model.User
 import com.fiap18Mob.clean.utils.Mask
 import com.fiap18Mob.clean.utils.isValidEmail
 import com.fiap18Mob.clean.utils.validate
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.include_loading.*
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SignUpActivity : AppCompatActivity() {
 
     val signUpViewModel: SignUpViewModel by viewModel()
-
+    private val user: User by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,8 @@ class SignUpActivity : AppCompatActivity() {
 
         etZipCode.addTextChangedListener(Mask.mask("#####-###", etZipCode))
         etZipCode.setOnFocusChangeListener { view, b -> searchAddress(b, etZipCode.text.toString()) }
+
+        etCPF.setOnFocusChangeListener { view, b -> searchUserLocalData(b, etCPF.text.toString()) }
 
         etPhone.addTextChangedListener(Mask.mask("(##) #####-####", etPhone))
 
@@ -48,6 +52,11 @@ class SignUpActivity : AppCompatActivity() {
         signUpViewModel.address.observe(this, Observer {
             if (it != null)
                 showAddressInfo()
+        })
+
+        signUpViewModel.user.observe(this, Observer {
+            if (it != null)
+                user.cpf = it.cpf
         })
 
         btnSendSignUp.setOnClickListener {
@@ -70,7 +79,13 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun searchAddress(b: Boolean, zipCode: String) {
         if(!b && zipCode.length == 9) {
-            signUpViewModel.getAddress(Mask.replaceChars(etZipCode.text.toString()))
+            signUpViewModel.getAddress(Mask.replaceChars(zipCode))
+        }
+    }
+
+    private fun searchUserLocalData(b: Boolean, cpf: String) {
+        if(!b && cpf.length == 14) {
+            signUpViewModel.getUser(Mask.replaceChars(cpf))
         }
     }
 
@@ -121,4 +136,29 @@ class SignUpActivity : AppCompatActivity() {
     private fun submitData() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        populateUserData()
+        saveUserDataLocally()
+    }
+
+    private fun populateUserData() {
+        user.cpf = Mask.replaceChars(etCPF.text.toString())
+        user.nome = etFullName.text.toString()
+        user.phoneNumber = Mask.replaceChars(etPhone.text.toString())
+        user.zipCode = Mask.replaceChars(etZipCode.text.toString())
+        user.street = etStreetAddress.text.toString()
+        user.number = etNumber.text.toString() as? Int ?: 0
+        user.complement = etAddressComp.text.toString()
+        user.neighborhood = etNeighborhood.text.toString()
+        user.city = etCity.text.toString()
+        user.uf = spStates.selectedItem.toString()
+        user.email = etEmail.text.toString()
+    }
+
+    fun saveUserDataLocally() {
+        signUpViewModel.insertUser(user)
+    }
+
 }
