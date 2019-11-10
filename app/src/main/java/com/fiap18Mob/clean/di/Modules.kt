@@ -4,15 +4,13 @@ import androidx.room.Room
 import com.fiap18Mob.clean.api.AddressService
 import com.fiap18Mob.clean.dao.CleanRoomDatabase
 import com.fiap18Mob.clean.model.User
-import com.fiap18Mob.clean.repository.AddressRepository
-import com.fiap18Mob.clean.repository.AddressRepositoryImpl
-import com.fiap18Mob.clean.repository.UserRepository
-import com.fiap18Mob.clean.repository.UserRepositoryLocal
+import com.fiap18Mob.clean.repository.*
 import com.fiap18Mob.clean.utils.URLProvider
-import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordActivity
 import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordViewModel
 import com.fiap18Mob.clean.view.login.LoginViewModel
 import com.fiap18Mob.clean.view.signup.SignUpViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -20,9 +18,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val viewModelModule = module {
-    viewModel { SignUpViewModel(get(), get(), get()) }
     viewModel { LoginViewModel() }
     viewModel { ForgotPasswordViewModel() }
+    viewModel { SignUpViewModel(get(), get(), get(), get()) }
 }
 
 val uiModule = module {
@@ -32,6 +30,7 @@ val uiModule = module {
 val repositoryModule = module {
     single<AddressRepository> { AddressRepositoryImpl(get()) }
     single<UserRepository> { UserRepositoryLocal(get()) }
+    single<UserRepositoryRemote> { UserRepositoryRemote(get(),get()) }
 }
 
 val dbModule = module {
@@ -45,6 +44,14 @@ val dbModule = module {
 
     single {
         get<CleanRoomDatabase>().userDao()
+    }
+
+    single {
+        FirebaseDatabase.getInstance()
+    }
+
+    single {
+        FirebaseAuth.getInstance()
     }
 }
 
