@@ -9,7 +9,7 @@ class LoginViewModel : ViewModel() {
     private lateinit var mAuth: FirebaseAuth
     var alreadyAuth: MutableLiveData<Boolean> = MutableLiveData()
     var authorized: MutableLiveData<Boolean> = MutableLiveData()
-    var exceptionMessage: MutableLiveData<String> = MutableLiveData()
+    var messageError: MutableLiveData<String> = MutableLiveData()
 
     fun initialAuth() {
         mAuth = FirebaseAuth.getInstance()
@@ -25,16 +25,15 @@ class LoginViewModel : ViewModel() {
         alreadyAuth.value = false
     }
 
-    fun auth(email: String, password: String) {
+    fun auth(emailAddress: String, password: String) {
         mAuth.signInWithEmailAndPassword(
-            email,
+            emailAddress,
             password
         ).addOnCompleteListener {
             authorized.value = it.isSuccessful
             if (!it.isSuccessful) {
-                exceptionMessage.value = it.exception?.message
+                messageError.value = it.exception?.message
             }
         }
     }
-
 }

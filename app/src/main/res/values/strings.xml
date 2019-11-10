@@ -38,4 +38,9 @@
     <string name="btMySchedules">My schedules</string>
     <string name="btClose">Close</string>
     <string name="emailPasswordRequired">E-mail and password are required.</string>
+    <string name="emailRequired">E-mail is required.</string>
+    <string name="btResetPassword">Reset password</string>
+    <string name="resetEmailSent">Reset e-mail sent.</string>
+    <string name="errorTryAgain">Error. Try again.</string>
+    <string name="invalidEmail">Invalid e-mail.</string>
 </resources>

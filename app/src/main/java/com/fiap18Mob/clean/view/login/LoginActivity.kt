@@ -7,15 +7,17 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.R
+import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordActivity
 import com.fiap18Mob.clean.view.main.MainActivity
 import com.fiap18Mob.clean.view.signup.SignUpActivity
 
 import kotlinx.android.synthetic.main.activity_login.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private val newUserRequestCode = 1
-    private val loginViewModel: LoginViewModel = LoginViewModel()
+    private val loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,16 +30,14 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-        loginViewModel.exceptionMessage.observe(
-            this,
-            Observer {
-                val message: String = it
+        loginViewModel.messageError.observe(this, Observer {
+            if (it != null) {
                 Toast.makeText(
-                    this@LoginActivity, message,
+                    this@LoginActivity, it,
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        )
+        })
 
         btEnter.setOnClickListener {
             if (edEmail.text.toString().trim().isNotEmpty() && edPassword.text.toString().trim().isNotEmpty()) {
@@ -49,8 +49,7 @@ class LoginActivity : AppCompatActivity() {
                 })
             } else {
                 Toast.makeText(
-                    this@LoginActivity, R.string.emailPasswordRequired,
-                     Toast.LENGTH_SHORT
+                    this@LoginActivity, getString(R.string.emailPasswordRequired), Toast.LENGTH_SHORT
                 ).show()
             }
         }
@@ -61,6 +60,10 @@ class LoginActivity : AppCompatActivity() {
 
         btSingupCleaner.setOnClickListener {
             goToSignUp("CLEANER")
+        }
+
+        tvForgotPassword.setOnClickListener {
+            goResetPassword()
         }
     }
 
@@ -75,6 +78,12 @@ class LoginActivity : AppCompatActivity() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
         finish()
+    }
+
+    private fun goResetPassword() {
+        val intent = Intent(this, ForgotPasswordActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

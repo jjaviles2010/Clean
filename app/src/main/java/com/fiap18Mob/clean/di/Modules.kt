@@ -9,6 +9,9 @@ import com.fiap18Mob.clean.repository.AddressRepositoryImpl
 import com.fiap18Mob.clean.repository.UserRepository
 import com.fiap18Mob.clean.repository.UserRepositoryLocal
 import com.fiap18Mob.clean.utils.URLProvider
+import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordActivity
+import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordViewModel
+import com.fiap18Mob.clean.view.login.LoginViewModel
 import com.fiap18Mob.clean.view.signup.SignUpViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -18,6 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val viewModelModule = module {
     viewModel { SignUpViewModel(get(), get(), get()) }
+    viewModel { LoginViewModel() }
+    viewModel { ForgotPasswordViewModel() }
 }
 
 val uiModule = module {

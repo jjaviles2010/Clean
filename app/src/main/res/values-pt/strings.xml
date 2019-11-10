@@ -38,4 +38,9 @@
     <string name="btMySchedules">Meus agendamentos</string>
     <string name="btClose">Sair</string>
     <string name="emailPasswordRequired">E-mail e senha são obrigatórios.</string>
+    <string name="emailRequired">E-mail requerido.</string>
+    <string name="btResetPassword">Redefinir senha</string>
+    <string name="resetEmailSent">E-mail de redefinição de senha enviado.</string>
+    <string name="errorTryAgain">Erro. Tente novamente.</string>
+    <string name="invalidEmail">E-mail inválido.</string>
 </resources>
