@@ -34,4 +34,8 @@
     <string name="numberRequiredMsg">Número requerido</string>
     <string name="etNeighborhoodRequired">Bairro requerido</string>
     <string name="cityRequiredMsg">Cidade requerida</string>
+    <string name="btSearchDiarist">Buscar diarista?</string>
+    <string name="btMySchedules">Meus agendamentos</string>
+    <string name="btClose">Sair</string>
+    <string name="emailPasswordRequired">E-mail e senha são obrigatórios.</string>
 </resources>

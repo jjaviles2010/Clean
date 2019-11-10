@@ -34,4 +34,8 @@
     <string name="numberRequiredMsg">Number required</string>
     <string name="etNeighborhoodRequired">Neighborhood required</string>
     <string name="cityRequiredMsg">City required</string>
+    <string name="btSearchDiarist">Search diarist?</string>
+    <string name="btMySchedules">My schedules</string>
+    <string name="btClose">Close</string>
+    <string name="emailPasswordRequired">E-mail and password are required.</string>
 </resources>
