@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.User
+import com.fiap18Mob.clean.repository.UserRepository
 import com.fiap18Mob.clean.utils.Mask
 import com.fiap18Mob.clean.utils.isValidEmail
 import com.fiap18Mob.clean.utils.validate
@@ -20,6 +21,7 @@ class SignUpActivity : AppCompatActivity() {
 
     val signUpViewModel: SignUpViewModel by viewModel()
     private val user: User by inject()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +57,27 @@ class SignUpActivity : AppCompatActivity() {
         })
 
         signUpViewModel.user.observe(this, Observer {
-            if (it != null)
-                user.cpf = it.cpf
+            if (it != null) {
+                etFullName.setText(it.nome)
+                etPhone.setText(it.phoneNumber)
+                etZipCode.setText(it.zipCode)
+                etStreetAddress.setText(it.street)
+                etNumber.setText(it.number.toString())
+                etAddressComp.setText(it.complement)
+                etNeighborhood.setText(it.neighborhood)
+                etCity.setText(it.city)
+                val stateToSelect = resources.getStringArray(R.array.statesList).indexOf(it.uf)
+                spStates.setSelection(stateToSelect)
+                etEmail.setText(it.email)
+            }
+        })
+
+        signUpViewModel.isUserSignUp.observe(this, Observer {
+            if (it == true) {
+                submitData()
+            } else {
+                Toast.makeText(this, "Aconteceu um erro ao tentar logar!", Toast.LENGTH_LONG).show()
+            }
         })
 
         btnSendSignUp.setOnClickListener {
@@ -85,7 +106,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun searchUserLocalData(b: Boolean, cpf: String) {
         if(!b && cpf.length == 14) {
-            signUpViewModel.getUser(Mask.replaceChars(cpf))
+            signUpViewModel.getUserLocally(Mask.replaceChars(cpf))
         }
     }
 
@@ -98,8 +119,10 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun sendSignUp() {
-        if(validateFields())
-            submitData()
+        if(validateFields()) {
+            populateUserData()
+            signUpViewModel.signUpUser(user, etPassword.text.toString())
+        }
     }
 
     private fun validateFields(): Boolean = (validPersonalData() && validAddressData() && validLoginData())
@@ -134,11 +157,11 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun submitData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        signUpViewModel.insertUserRemote(user)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
         populateUserData()
         saveUserDataLocally()
     }
@@ -149,7 +172,7 @@ class SignUpActivity : AppCompatActivity() {
         user.phoneNumber = Mask.replaceChars(etPhone.text.toString())
         user.zipCode = Mask.replaceChars(etZipCode.text.toString())
         user.street = etStreetAddress.text.toString()
-        user.number = etNumber.text.toString() as? Int ?: 0
+        user.number = etNumber.text.toString().toIntOrNull() ?: 0
         user.complement = etAddressComp.text.toString()
         user.neighborhood = etNeighborhood.text.toString()
         user.city = etCity.text.toString()
@@ -158,7 +181,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     fun saveUserDataLocally() {
-        signUpViewModel.insertUser(user)
+        signUpViewModel.insertUserLocally(user)
     }
 
 }

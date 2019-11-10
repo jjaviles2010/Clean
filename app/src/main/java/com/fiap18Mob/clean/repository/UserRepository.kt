@@ -1,5 +1,7 @@
 package com.fiap18Mob.clean.repository
 
+import androidx.lifecycle.LiveData
+import com.fiap18Mob.clean.dao.UserDao
 import com.fiap18Mob.clean.model.User
 
 interface UserRepository {
@@ -9,5 +11,5 @@ interface UserRepository {
 
     fun getUser(
         cpf: String
-    )
+    ): User
 }
