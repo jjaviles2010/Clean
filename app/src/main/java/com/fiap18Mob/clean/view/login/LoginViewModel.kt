@@ -4,16 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel (val mAuth: FirebaseAuth): ViewModel() {
 
-    private lateinit var mAuth: FirebaseAuth
     var alreadyAuth: MutableLiveData<Boolean> = MutableLiveData()
     var authorized: MutableLiveData<Boolean> = MutableLiveData()
     var messageError: MutableLiveData<String> = MutableLiveData()
 
     fun initialAuth() {
-        mAuth = FirebaseAuth.getInstance()
-
         //ATENÇÃO: remover esta linha. Ela está ai para forçar um login todas as vezes que o app é aberto
         //Perguntar para o Heider, porque mesmo que exclua ou inative o usuário no Firebase, o login continua ativo.
         mAuth.signOut()

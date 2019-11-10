@@ -12,7 +12,8 @@ class UserRepositoryLocal (val userDao: UserDao) : UserRepository {
         userDao.insert(user)
     }
 
-    override fun getUser(cpf: String) {
-        val user: LiveData<User> = userDao.getUser(cpf)
+    @WorkerThread
+    override fun getUser(cpf: String): User {
+        return userDao.getUser(cpf)
     }
 }

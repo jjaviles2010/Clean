@@ -18,8 +18,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val viewModelModule = module {
-    viewModel { LoginViewModel() }
-    viewModel { ForgotPasswordViewModel() }
+    viewModel { LoginViewModel(get()) }
+    viewModel { ForgotPasswordViewModel(get()) }
     viewModel { SignUpViewModel(get(), get(), get(), get()) }
 }
 

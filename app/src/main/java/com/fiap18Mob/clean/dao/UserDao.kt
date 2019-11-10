@@ -14,6 +14,6 @@ interface UserDao {
     suspend fun insert(user: User)
 
     @Query("SELECT * FROM user WHERE cpf = :userCpf LIMIT 1")
-    fun getUser(userCpf: String) : LiveData<User>
+    fun getUser(userCpf: String) : User
 
 }
