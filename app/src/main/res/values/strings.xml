@@ -43,4 +43,5 @@
     <string name="resetEmailSent">Reset e-mail sent.</string>
     <string name="errorTryAgain">Error. Try again.</string>
     <string name="invalidEmail">Invalid e-mail.</string>
+    <string name="etHourValueHint">Value per hour</string>
 </resources>

@@ -16,5 +16,7 @@ class User(
     var complement: String = "",
     var neighborhood: String = "",
     var city: String = "",
-    var uf: String = ""
+    var uf: String = "",
+    var profile: String = "",
+    var hourValue: Double = 0.0
 )

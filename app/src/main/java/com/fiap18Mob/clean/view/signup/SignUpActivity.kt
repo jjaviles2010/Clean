@@ -1,7 +1,10 @@
 package com.fiap18Mob.clean.view.signup
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Visibility
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -27,17 +30,75 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        getExtras()
         populateSpinner()
+        configureMasks()
+        configureListeners()
+        configureGeneralObservers()
+        configureUserObservers()
 
+        btnSendSignUp.setOnClickListener {
+            sendSignUp()
+        }
+    }
+
+
+    private fun getExtras() {
+        if (intent.extras?.getString("USER_TYPE") == "CLIENT") {
+            user.profile = "CLIENT"
+            etHourValue.visibility = View.GONE
+        } else {
+            user.profile = "CLEANER"
+        }
+    }
+
+
+    private fun populateSpinner() {
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.statesList,
+            android.R.layout.simple_spinner_item
+        )
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spStates.adapter = adapter
+    }
+
+
+    private fun configureMasks() {
         etCPF.addTextChangedListener(Mask.mask("###.###.###-##", etCPF))
-
         etZipCode.addTextChangedListener(Mask.mask("#####-###", etZipCode))
-        etZipCode.setOnFocusChangeListener { view, b -> searchAddress(b, etZipCode.text.toString()) }
-
-        etCPF.setOnFocusChangeListener { view, b -> searchUserLocalData(b, etCPF.text.toString()) }
-
         etPhone.addTextChangedListener(Mask.mask("(##) #####-####", etPhone))
+        etHourValue.addTextChangedListener(Mask.mask("###.##", etHourValue))
+    }
 
+
+    private fun configureListeners() {
+        etZipCode.setOnFocusChangeListener { view, b ->
+            searchAddress(
+                b,
+                etZipCode.text.toString()
+            )
+        }
+        etCPF.setOnFocusChangeListener { view, b -> searchUserLocalData(b, etCPF.text.toString()) }
+    }
+
+
+    private fun searchAddress(b: Boolean, zipCode: String) {
+        if(!b && zipCode.length == 9) {
+            signUpViewModel.getAddress(Mask.replaceChars(zipCode))
+        }
+    }
+
+
+    private fun searchUserLocalData(b: Boolean, cpf: String) {
+        if(!b && cpf.length == 14) {
+            signUpViewModel.getUserLocally(Mask.replaceChars(cpf))
+        }
+    }
+
+
+    private fun configureGeneralObservers() {
         signUpViewModel.isLoading.observe(this, Observer {
             if (it == true) {
                 containerLoading.visibility = View.VISIBLE
@@ -55,7 +116,10 @@ class SignUpActivity : AppCompatActivity() {
             if (it != null)
                 showAddressInfo()
         })
+    }
 
+
+    private fun configureUserObservers() {
         signUpViewModel.user.observe(this, Observer {
             if (it != null) {
                 etFullName.setText(it.nome)
@@ -82,41 +146,17 @@ class SignUpActivity : AppCompatActivity() {
 
         signUpViewModel.isUserCreated.observe(this, Observer {
             if (it == true) {
+                val resultIntent = Intent()
+                resultIntent.putExtra("email", user.email)
+                setResult(Activity.RESULT_OK, resultIntent)
                 finish()
             } else {
-                Toast.makeText(this, "Aconteceu um erro ao criar usuário!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Aconteceu um erro ao criar usuário!", Toast.LENGTH_LONG)
+                    .show()
             }
         })
-
-        btnSendSignUp.setOnClickListener {
-            sendSignUp()
-        }
     }
 
-
-    private fun populateSpinner() {
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.statesList,
-            android.R.layout.simple_spinner_item
-        )
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spStates.adapter = adapter
-    }
-
-
-    private fun searchAddress(b: Boolean, zipCode: String) {
-        if(!b && zipCode.length == 9) {
-            signUpViewModel.getAddress(Mask.replaceChars(zipCode))
-        }
-    }
-
-    private fun searchUserLocalData(b: Boolean, cpf: String) {
-        if(!b && cpf.length == 14) {
-            signUpViewModel.getUserLocally(Mask.replaceChars(cpf))
-        }
-    }
 
     private fun showAddressInfo() {
         etStreetAddress.setText(signUpViewModel.address.value?.logradouro)
@@ -126,6 +166,7 @@ class SignUpActivity : AppCompatActivity() {
         spStates.setSelection(stateToSelect)
     }
 
+
     private fun sendSignUp() {
         if(validateFields()) {
             populateUserData()
@@ -134,7 +175,9 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+
     private fun validateFields(): Boolean = (validPersonalData() && validAddressData() && validLoginData())
+
 
     private fun validPersonalData(): Boolean {
         etFullName.validate(getString(R.string.nameRequiredMsg)) { s -> s.isNotEmpty() }
@@ -142,6 +185,7 @@ class SignUpActivity : AppCompatActivity() {
 
         return etFullName.error == null && etCPF.error == null
     }
+
 
     private fun validAddressData(): Boolean {
         etZipCode.validate(getString(R.string.zipCodeRequiredMsg)) { s -> s.isNotEmpty() }
@@ -154,6 +198,7 @@ class SignUpActivity : AppCompatActivity() {
                 && etNeighborhood.error == null && etCity.error == null
     }
 
+
     private fun validLoginData(): Boolean {
 
         etEmail.validate(getString(R.string.emailRequiredMsg)) { s -> s.isNotEmpty() }
@@ -165,15 +210,18 @@ class SignUpActivity : AppCompatActivity() {
         return etEmail.error == null && etPassword.error == null && etConfirmPassword.error == null
     }
 
+
     private fun submitData() {
         signUpViewModel.insertUserRemote(user)
     }
+
 
     override fun onPause() {
         super.onPause()
         populateUserData()
         saveUserDataLocally()
     }
+
 
     private fun populateUserData() {
         user.cpf = Mask.replaceChars(etCPF.text.toString())
@@ -187,7 +235,9 @@ class SignUpActivity : AppCompatActivity() {
         user.city = etCity.text.toString()
         user.uf = spStates.selectedItem.toString()
         user.email = etEmail.text.toString()
+        user.hourValue = etHourValue.text.toString().toDoubleOrNull() ?: 0.0
     }
+
 
     fun saveUserDataLocally() {
         signUpViewModel.insertUserLocally(user)

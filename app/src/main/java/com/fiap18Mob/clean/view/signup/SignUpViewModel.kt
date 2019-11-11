@@ -9,6 +9,7 @@ import com.fiap18Mob.clean.model.User
 import com.fiap18Mob.clean.repository.AddressRepository
 import com.fiap18Mob.clean.repository.UserRepository
 import com.fiap18Mob.clean.repository.UserRepositoryRemote
+import com.fiap18Mob.clean.utils.MessageUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch

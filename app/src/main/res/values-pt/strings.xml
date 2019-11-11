@@ -43,4 +43,5 @@
     <string name="resetEmailSent">E-mail de redefinição de senha enviado.</string>
     <string name="errorTryAgain">Erro. Tente novamente.</string>
     <string name="invalidEmail">E-mail inválido.</string>
+    <string name="etHourValueHint">Valor hora</string>
 </resources>
