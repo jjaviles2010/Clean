@@ -23,6 +23,7 @@ class SignUpViewModel(application: Application,
     val messageError: MutableLiveData<String> = MutableLiveData()
     val user: MutableLiveData<User> = MutableLiveData()
     val isUserSignUp: MutableLiveData<Boolean> = MutableLiveData()
+    val isUserCreated: MutableLiveData<Boolean> = MutableLiveData()
 
     fun getAddress(cep: String) {
         isLoading.value = true
@@ -45,7 +46,7 @@ class SignUpViewModel(application: Application,
     }
 
     fun insertUserLocally(user: User) = viewModelScope.launch (Dispatchers.IO) {
-        userLocalRepository.insertUser(user)
+        userLocalRepository.insertUser(user, onComplete = {}, onError = {})
     }
 
     fun getUserRemote(cpf: String) {
@@ -57,16 +58,28 @@ class SignUpViewModel(application: Application,
             user,
             password,
             onComplete = {
+                isLoading.value = false
                 isUserSignUp.value = it
             },
             onError = {
+                isLoading.value = false
                 messageError.value = it?.message
             }
             )
     }
 
     fun insertUserRemote(user: User) = viewModelScope.launch (Dispatchers.IO) {
-        userRemoteRepository.insertUser(user)
+        userRemoteRepository.insertUser(
+            user,
+            onComplete = {
+                isLoading.value = false
+                isUserCreated.value = true
+            },
+            onError = {
+                isLoading.value = false
+                isUserCreated.value = false
+                messageError.value = it?.message
+            })
     }
 
 }

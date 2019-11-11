@@ -8,7 +8,11 @@ import com.fiap18Mob.clean.model.User
 class UserRepositoryLocal (val userDao: UserDao) : UserRepository {
 
     @WorkerThread
-    override suspend fun insertUser(user: User) {
+    override suspend fun insertUser(
+        user: User,
+        onComplete: (Boolean?) -> Unit,
+        onError: (Throwable?) -> Unit
+    ) {
         userDao.insert(user)
     }
 

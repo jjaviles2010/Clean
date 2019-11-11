@@ -15,10 +15,18 @@ class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
     private val firebaseReferenceNode = "users"
 
 
-    override suspend fun insertUser(user: User) {
+    override suspend fun insertUser(user: User, onComplete: (Boolean?) -> Unit,
+                                    onError: (Throwable?) -> Unit) {
         firebaseDB.getReference(firebaseReferenceNode)
             .child(firebaseAuth.currentUser?.uid ?: "")
             .setValue(user)
+            .addOnCompleteListener{
+                if (it.isSuccessful) {
+                    onComplete(true)
+                } else {
+                    onError(it.exception)
+                }
+            }
     }
 
     override fun getUser(cpf: String): User {

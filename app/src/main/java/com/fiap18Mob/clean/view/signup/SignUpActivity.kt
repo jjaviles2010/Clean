@@ -80,6 +80,14 @@ class SignUpActivity : AppCompatActivity() {
             }
         })
 
+        signUpViewModel.isUserCreated.observe(this, Observer {
+            if (it == true) {
+                finish()
+            } else {
+                Toast.makeText(this, "Aconteceu um erro ao criar usuário!", Toast.LENGTH_LONG).show()
+            }
+        })
+
         btnSendSignUp.setOnClickListener {
             sendSignUp()
         }
@@ -121,6 +129,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun sendSignUp() {
         if(validateFields()) {
             populateUserData()
+            signUpViewModel.isLoading.value = true
             signUpViewModel.signUpUser(user, etPassword.text.toString())
         }
     }

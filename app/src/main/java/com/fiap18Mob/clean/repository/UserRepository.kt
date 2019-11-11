@@ -6,7 +6,9 @@ import com.fiap18Mob.clean.model.User
 
 interface UserRepository {
     suspend fun insertUser(
-        user: User
+        user: User,
+        onComplete: (Boolean?) -> Unit,
+        onError: (Throwable?) -> Unit
     )
 
     fun getUser(
