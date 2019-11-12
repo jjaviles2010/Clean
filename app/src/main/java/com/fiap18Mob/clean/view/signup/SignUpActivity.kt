@@ -69,7 +69,6 @@ class SignUpActivity : AppCompatActivity() {
         etCPF.addTextChangedListener(Mask.mask("###.###.###-##", etCPF))
         etZipCode.addTextChangedListener(Mask.mask("#####-###", etZipCode))
         etPhone.addTextChangedListener(Mask.mask("(##) #####-####", etPhone))
-        etHourValue.addTextChangedListener(Mask.mask("###.##", etHourValue))
     }
 
 
@@ -182,6 +181,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun validPersonalData(): Boolean {
         etFullName.validate(getString(R.string.nameRequiredMsg)) { s -> s.isNotEmpty() }
         etCPF.validate(getString(R.string.cpfRequiredMsg)) { s -> s.isNotEmpty() }
+        etCPF.validate(getString(R.string.etCPFInvalidMsg)) { s -> s.length > 13 }
 
         return etFullName.error == null && etCPF.error == null
     }
@@ -189,6 +189,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun validAddressData(): Boolean {
         etZipCode.validate(getString(R.string.zipCodeRequiredMsg)) { s -> s.isNotEmpty() }
+        etZipCode.validate(getString(R.string.etZipCodeInvalidMsg)) { s -> s.length > 8 }
         etStreetAddress.validate(getString(R.string.streetRequiredMsg)) { s -> s.isNotEmpty() }
         etNumber.validate(getString(R.string.numberRequiredMsg)) { s -> s.isNotEmpty() }
         etNeighborhood.validate(getString(R.string.etNeighborhoodRequired)) { s -> s.isNotEmpty() }

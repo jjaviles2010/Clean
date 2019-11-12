@@ -44,4 +44,6 @@
     <string name="errorTryAgain">Erro. Tente novamente.</string>
     <string name="invalidEmail">E-mail inválido.</string>
     <string name="etHourValueHint">Valor hora</string>
+    <string name="etZipCodeInvalidMsg">CEP inválido</string>
+    <string name="etCPFInvalidMsg">CPF inválido</string>
 </resources>
