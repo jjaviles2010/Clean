@@ -37,6 +37,7 @@
     <string name="btSearchDiarist">Search diarist?</string>
     <string name="btMySchedules">My schedules</string>
     <string name="btClose">Close</string>
+    <string name="btViewMap">View map</string>
     <string name="emailPasswordRequired">E-mail and password are required.</string>
     <string name="emailRequired">E-mail is required.</string>
     <string name="btResetPassword">Reset password</string>
@@ -46,4 +47,7 @@
     <string name="etHourValueHint">Value per hour</string>
     <string name="etZipCodeInvalidMsg">Invalid Zip Code</string>
     <string name="etCPFInvalidMsg">Invalid CPF</string>
+    <string name="logoClean">Logo Clean</string>
+    <string name="developed">developed by clean.com</string>
+
 </resources>

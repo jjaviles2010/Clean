@@ -6,13 +6,18 @@
         android:layout_height="match_parent">
 
     <ImageView
-            android:alpha="0.9"
-            android:layout_width="0dp"
-            android:layout_height="120dp" app:srcCompat="@drawable/clean_logo_basico"
-            android:id="@+id/imageView"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
+        android:alpha="0.9"
+        android:contentDescription="@string/logoClean"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/clean_logo_basico" />
     <Button
             style="@style/custom_button"
             android:text="@string/btMySchedules"
@@ -20,14 +25,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/btSchedules"
             android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/btSearch"
-            app:layout_constraintBottom_toTopOf="@+id/btClose"
+            app:layout_constraintBottom_toTopOf="@+id/btViewMap"
             app:layout_constraintEnd_toEndOf="@+id/btSearch" app:layout_constraintStart_toStartOf="@+id/btSearch"/>
     <Button
             style="@style/custom_button"
-            android:text="@string/btClose"
+            android:text="@string/btViewMap"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/btClose"
+            android:id="@+id/btViewMap"
             android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/btSchedules"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="@+id/btSchedules" app:layout_constraintStart_toStartOf="@+id/btSchedules"/>
@@ -45,7 +50,7 @@
     <TextView
             android:gravity="center"
         android:textColor="#673AB7"
-            android:text="Desenvolvido por Clean.com"
+            android:text="@string/developed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView" android:layout_marginBottom="8dp"
