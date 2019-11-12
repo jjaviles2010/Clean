@@ -139,7 +139,7 @@ class SignUpActivity : AppCompatActivity() {
             if (it == true) {
                 submitData()
             } else {
-                Toast.makeText(this, "Aconteceu um erro ao tentar logar!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.errorCreatingUserMsg), Toast.LENGTH_LONG).show()
             }
         })
 
@@ -150,7 +150,7 @@ class SignUpActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, resultIntent)
                 finish()
             } else {
-                Toast.makeText(this, "Aconteceu um erro ao criar usuário!", Toast.LENGTH_LONG)
+                Toast.makeText(this, getString(R.string.errorCreatingUserMsg), Toast.LENGTH_LONG)
                     .show()
             }
         })

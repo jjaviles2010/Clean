@@ -49,4 +49,9 @@
     <string name="btViewMap">Visualizar mapa</string>
     <string name="logoClean">Logotipo Clean</string>
     <string name="developed">desenvolvido por clean.com</string>
+    <string name="errorCreatingUserMsg">Aconteceu um erro criando o usuário!</string>
+    <string name="tvProfessional_info">Informações do Profissional</string>
+    <string name="tvNameLbl">Nome :</string>
+    <string name="tvPhoneLbl">Telefone :</string>
+    <string name="hour_value">Valor hora :</string>
 </resources>

@@ -59,7 +59,6 @@ class SignUpViewModel(application: Application,
             user,
             password,
             onComplete = {
-                isLoading.value = false
                 isUserSignUp.value = it
             },
             onError = {
@@ -73,8 +72,8 @@ class SignUpViewModel(application: Application,
         userRemoteRepository.insertUser(
             user,
             onComplete = {
-                isLoading.value = false
                 isUserCreated.value = true
+                isLoading.value = false
             },
             onError = {
                 isLoading.value = false

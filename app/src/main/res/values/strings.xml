@@ -49,5 +49,9 @@
     <string name="etCPFInvalidMsg">Invalid CPF</string>
     <string name="logoClean">Logo Clean</string>
     <string name="developed">developed by clean.com</string>
-
+    <string name="errorCreatingUserMsg">Error creating user!</string>
+    <string name="tvProfessional_info">Professional\'s Info</string>
+    <string name="tvNameLbl">Name :</string>
+    <string name="tvPhoneLbl">Phone :</string>
+    <string name="hour_value">Hour value :</string>
 </resources>
