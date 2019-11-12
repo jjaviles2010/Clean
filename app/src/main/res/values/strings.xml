@@ -46,4 +46,5 @@
     <string name="etHourValueHint">Value per hour</string>
     <string name="etZipCodeInvalidMsg">Invalid Zip Code</string>
     <string name="etCPFInvalidMsg">Invalid CPF</string>
+    <string name="errorCreatingUserMsg">Error creating user!</string>
 </resources>

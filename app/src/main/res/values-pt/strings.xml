@@ -46,4 +46,5 @@
     <string name="etHourValueHint">Valor hora</string>
     <string name="etZipCodeInvalidMsg">CEP inválido</string>
     <string name="etCPFInvalidMsg">CPF inválido</string>
+    <string name="errorCreatingUserMsg">Aconteceu um erro criando o usuário!</string>
 </resources>

@@ -59,7 +59,6 @@ class SignUpViewModel(application: Application,
             user,
             password,
             onComplete = {
-                isLoading.value = false
                 isUserSignUp.value = it
             },
             onError = {
