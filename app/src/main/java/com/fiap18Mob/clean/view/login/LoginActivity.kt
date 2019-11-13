@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.R
+import com.fiap18Mob.clean.utils.DatabaseUtil
 import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordActivity
 import com.fiap18Mob.clean.view.main.MainActivity
 import com.fiap18Mob.clean.view.signup.SignUpActivity
+import com.google.firebase.iid.FirebaseInstanceId
 
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -74,6 +76,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToMain() {
+
+        //ARRUMARRRR.
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(this) {
+                instanceIdResult ->
+            val newToken = instanceIdResult.token
+            DatabaseUtil.saveToken(newToken)
+        }
+
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)

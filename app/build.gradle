@@ -81,6 +81,8 @@ dependencies {
     // Coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+    //Biblioteca Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging:19.0.0'
 
 
 }
