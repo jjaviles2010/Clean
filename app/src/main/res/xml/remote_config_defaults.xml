@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>is_client_registration_active</key>
+        <value>1</value>
+    </entry>
+    <entry>
+        <key>is_cleaner_registration_active</key>
+        <value>1</value>
+    </entry>
+</defaultsMap>
