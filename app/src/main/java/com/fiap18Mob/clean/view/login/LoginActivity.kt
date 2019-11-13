@@ -12,7 +12,6 @@ import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordActivity
 import com.fiap18Mob.clean.view.main.MainActivity
 import com.fiap18Mob.clean.view.signup.SignUpActivity
 import com.google.firebase.iid.FirebaseInstanceId
-
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -77,7 +76,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun goToMain() {
 
-        //ARRUMARRRR.
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(this) {
                 instanceIdResult ->
             val newToken = instanceIdResult.token

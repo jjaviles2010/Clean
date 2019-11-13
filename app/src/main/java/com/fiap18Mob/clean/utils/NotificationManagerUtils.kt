@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi
 
 class NotificationManagerUtils(private val context: Context) {
     companion object {
-        private val CHANNEL_ID = "YOUR_CHANNEL_ID"
+        private val CHANNEL_ID = "promo"
         private val CHANNEL_NAME = "Miscellaneous"
         private val CHANNEL_DESCRIPTION = "description"
     }
