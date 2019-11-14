@@ -13,7 +13,6 @@
         <activity android:name=".view.usersList.RecyclerViewActivity"></activity>
         <activity android:name=".view.cleanerDetail.CleanerDetailActivity" />
         <activity android:name=".view.forgotpassword.ForgotPasswordActivity" />
-        <activity android:name=".view.dataTableList.DataTableListActivity" />
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.about.AboutActivity" />
         <activity android:name=".view.signup.SignUpActivity" />
