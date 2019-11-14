@@ -20,6 +20,19 @@
         app:layout_constraintTop_toBottomOf="@+id/btSingupClient" />
 
     <Button
+        android:id="@+id/btCrash"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginBottom="16dp"
+        android:background="#FFFFFF"
+        android:text="@string/crash_me"
+        android:textColor="@color/secondaryText"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/btSingupClient"
         style="@style/custom_button"
         android:layout_width="0dp"

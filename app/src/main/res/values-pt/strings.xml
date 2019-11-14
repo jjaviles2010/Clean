@@ -54,4 +54,5 @@
     <string name="tvNameLbl">Nome :</string>
     <string name="tvPhoneLbl">Telefone :</string>
     <string name="hour_value">Valor hora :</string>
+    <string name="crash_me">Dar erro!</string>
 </resources>

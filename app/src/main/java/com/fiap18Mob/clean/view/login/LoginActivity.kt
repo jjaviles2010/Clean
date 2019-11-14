@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.crashlytics.android.Crashlytics
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordActivity
 import com.fiap18Mob.clean.view.main.MainActivity
@@ -82,6 +83,11 @@ class LoginActivity : AppCompatActivity() {
 
         tvForgotPassword.setOnClickListener {
             goResetPassword()
+        }
+
+        btCrash.setOnClickListener {
+            Crashlytics.log("Erro na tela de login.")
+            Crashlytics.getInstance().crash()
         }
 
         loginViewModel.checkRemoteConfig()
