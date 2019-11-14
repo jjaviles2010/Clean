@@ -11,6 +11,9 @@ import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
 import com.fiap18Mob.clean.R
+import com.fiap18Mob.clean.repository.UserRepositoryRemote
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -31,7 +34,10 @@ class DataTableListActivity : AppCompatActivity() {
 
         private val myContext: Context
 
-        private val infos = arrayListOf<String>( "Gabriel", "Vilson", "Leando", "Javier" )
+//        private val infos = arrayListOf<String>( "Gabriel", "Vilson", "Leando", "Javier" )
+        val userRemoteRep = UserRepositoryRemote(FirebaseAuth.getInstance(), FirebaseDatabase.getInstance())
+        val infos = userRemoteRep.getUsersByProfile("CLEANER", onComplete = { }, onError = { })
+
 
         init {
                 myContext = context
@@ -48,7 +54,7 @@ class DataTableListActivity : AppCompatActivity() {
             val rowLista = layoutInflater.inflate(R.layout.row_lista_dados, parent, false)
 
             val name = rowLista.findViewById<TextView>(R.id.textViewNameList)
-            name.text = infos.get(position)
+            name.text = infos.get(position).nome
 
             val preco = rowLista.findViewById<TextView>(R.id.textViewSubNameList)
             preco.text = "R$ 100.00 reais"
