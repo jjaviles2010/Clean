@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="24dp"
         android:text="@string/tvProfessional_info"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,4 +97,50 @@
         tools:text="Rua Inhambu 954, AP 35B, Vila Uberabinha, São Paulo, SP"
         app:layout_constraintStart_toStartOf="@+id/tvAddress"
         app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+
+    <EditText
+        android:id="@+id/etScheduleDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/custom_edittext"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="@+id/tvServiceDate"
+        app:layout_constraintTop_toBottomOf="@+id/tvServiceDate" />
+
+    <TextView
+        android:id="@+id/tvServiceDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/tvCleaningDate"
+        style="@style/custom_label_bold"
+        app:layout_constraintStart_toStartOf="@+id/tvFullAddress"
+        app:layout_constraintTop_toBottomOf="@+id/tvFullAddress" />
+
+    <Button
+        android:id="@+id/btnDatePicker"
+        style="@style/custom_button"
+        android:layout_width="43dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="8dp"
+
+        android:background="@drawable/ic_date_range_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etScheduleDate"
+        app:layout_constraintStart_toEndOf="@+id/etScheduleDate"
+        app:layout_constraintTop_toTopOf="@+id/etScheduleDate" />
+
+    <Button
+        android:id="@+id/btnScheduleService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/btnSchedule"
+        style="@style/custom_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etScheduleDate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

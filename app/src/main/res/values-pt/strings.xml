@@ -4,7 +4,7 @@
     <string name="etFullName">nome completo</string>
     <string name="etCPF">CPF (ex.: 123.456.789-10)</string>
     <string name="etPhone">telefone (ex.: (11) 12345-6789)</string>
-    <string name="tvAddress">Endereço</string>
+    <string name="tvAddress">Endereço :</string>
     <string name="etZipCodeHint">CEP (ex.: 01234-567)</string>
     <string name="etStreetAddressHint">logradouro (rua, av, pç, etc)</string>
     <string name="etNumberHint">número</string>
@@ -55,4 +55,6 @@
     <string name="tvPhoneLbl">Telefone :</string>
     <string name="hour_value">Valor hora :</string>
     <string name="crash_me">Dar erro!</string>
+    <string name="tvCleaningDate">Data da Limpeza :</string>
+    <string name="btnSchedule">Agendar</string>
 </resources>
