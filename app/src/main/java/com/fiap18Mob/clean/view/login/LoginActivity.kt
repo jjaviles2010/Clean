@@ -8,12 +8,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.R
-import com.fiap18Mob.clean.utils.DatabaseUtil
-import com.fiap18Mob.clean.utils.RemoteConfig
 import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordActivity
 import com.fiap18Mob.clean.view.main.MainActivity
 import com.fiap18Mob.clean.view.signup.SignUpActivity
-import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -39,6 +36,24 @@ class LoginActivity : AppCompatActivity() {
                     this@LoginActivity, it,
                     Toast.LENGTH_SHORT
                 ).show()
+            }
+        })
+
+        loginViewModel.clientRegistrationActive.observe(this, Observer {
+            if (it != null && !it) {
+                btSingupClient.visibility = View.INVISIBLE
+                if (btSingupCleaner.visibility == View.INVISIBLE) {
+                    tvFirstTimeHere.visibility = View.INVISIBLE
+                }
+            }
+        })
+
+        loginViewModel.cleanerRegistrationActive.observe(this, Observer {
+            if (it != null && !it) {
+                btSingupCleaner.visibility = View.INVISIBLE
+                if (btSingupClient.visibility == View.INVISIBLE) {
+                    tvFirstTimeHere.visibility = View.INVISIBLE
+                }
             }
         })
 
@@ -69,31 +84,7 @@ class LoginActivity : AppCompatActivity() {
             goResetPassword()
         }
 
-        RemoteConfig.remoteConfigFetch()
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    RemoteConfig.getFirebaseRemoteConfig().activateFetched()
-
-                    val isClientRegistrationActive = RemoteConfig.getFirebaseRemoteConfig()
-                        .getLong("is_client_registration_active")
-                        .toInt()
-                    if (isClientRegistrationActive != 1) {
-                        btSingupClient.visibility = View.INVISIBLE
-                    }
-
-                    val isCleanerRegistrationActive = RemoteConfig.getFirebaseRemoteConfig()
-                        .getLong("is_cleaner_registration_active")
-                        .toInt()
-                    if (isCleanerRegistrationActive != 1) {
-                        btSingupCleaner.visibility = View.INVISIBLE
-                    }
-
-                    if (isCleanerRegistrationActive != 1 && isClientRegistrationActive != 1) {
-                        tvFirstTimeHere.visibility = View.INVISIBLE
-                    }
-                }
-            }
-
+        loginViewModel.checkRemoteConfig()
     }
 
     private fun goToSignUp(userType: String) {
@@ -103,12 +94,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToMain() {
-        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(this) {
-                instanceIdResult ->
-            val newToken = instanceIdResult.token
-            DatabaseUtil.saveToken(newToken)
-        }
-
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
