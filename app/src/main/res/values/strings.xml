@@ -57,4 +57,5 @@
     <string name="crash_me">Crash me!</string>
     <string name="tvCleaningDate">Cleaning date :</string>
     <string name="btnSchedule">Schedule</string>
+    <string name="tvCleaningTime">Cleaning time :</string>
 </resources>

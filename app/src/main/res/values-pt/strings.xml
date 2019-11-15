@@ -57,4 +57,5 @@
     <string name="crash_me">Dar erro!</string>
     <string name="tvCleaningDate">Data da Limpeza :</string>
     <string name="btnSchedule">Agendar</string>
+    <string name="tvCleaningTime">Hora da limpeza :</string>
 </resources>
