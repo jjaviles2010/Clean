@@ -56,4 +56,25 @@ class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
             }
     }
 
+    fun getUsersByProfile(profile: String, onComplete: (Boolean?) -> Unit, onError: (Throwable?) -> Unit): List<User> {
+        var usersResult: MutableList<User> = mutableListOf()
+
+        firebaseDB.getReference(firebaseReferenceNode)
+            .orderByChild("profile")
+            .equalTo("CLEANER")
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+                    print(error.message)
+                }
+
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for (dataSnapshot in dataSnapshot?.getChildren()) {
+                        usersResult.add(dataSnapshot.getValue(User::class.java)!!)
+                    }
+                }
+            })
+
+        return  usersResult
+    }
+
 }

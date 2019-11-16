@@ -5,10 +5,13 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fiap18Mob.clean.R
 import kotlinx.android.synthetic.main.activity_recycler_view.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class RecyclerViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_view)
 
@@ -16,4 +19,6 @@ class RecyclerViewActivity : AppCompatActivity() {
         recyclerView_Main.layoutManager = LinearLayoutManager(this)
         recyclerView_Main.adapter = MainAdapter()
     }
+
+
 }

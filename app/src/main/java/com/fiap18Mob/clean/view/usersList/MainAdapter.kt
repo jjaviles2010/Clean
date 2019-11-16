@@ -5,14 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap18Mob.clean.R
+import com.fiap18Mob.clean.repository.UserRepositoryRemote
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.user_row.view.*
-
 
 class MainAdapter(): RecyclerView.Adapter<CustomViewHolder>() {
 
-    val infoClients = listOf<String> ("Gabriel", "Vilson", "Javier", "Leandro")
-
-
+    val userRemoteRep = UserRepositoryRemote(FirebaseAuth.getInstance(), FirebaseDatabase.getInstance())
+    val infoClients = userRemoteRep.getUsersByProfile("CLEANER", onComplete = { }, onError = { })
 
     // number of items
     override fun getItemCount(): Int {
@@ -28,7 +29,7 @@ class MainAdapter(): RecyclerView.Adapter<CustomViewHolder>() {
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val userInfo = infoClients.get(position)
-        holder.view.textViewName.text = userInfo
+        holder.view.textViewName.text = userInfo.nome
     }
 
 }
