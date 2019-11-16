@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.view.about.AboutActivity
-import com.fiap18Mob.clean.view.dataTableList.DataTableListActivity
+import com.fiap18Mob.clean.view.usersList.RecyclerViewActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+
         btSearch.setOnClickListener {
-            val intent = Intent(this, DataTableListActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@MainActivity, RecyclerViewActivity::class.java))
         }
     }
 

@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.cleanerDetail.CleanerDetailActivity"></activity>
-        <activity android:name=".view.forgotpassword.ForgotPasswordActivity"></activity>
-        <activity android:name=".view.dataTableList.DataTableListActivity" />
+        <activity android:name=".view.usersList.RecyclerViewActivity"></activity>
+        <activity android:name=".view.cleanerDetail.CleanerDetailActivity" />
+        <activity android:name=".view.forgotpassword.ForgotPasswordActivity" />
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.about.AboutActivity" />
         <activity android:name=".view.signup.SignUpActivity" />
@@ -29,12 +29,9 @@
             android:name=".fcm.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
-                <action
-                    android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
     </application>
-
-
 
 </manifest>
