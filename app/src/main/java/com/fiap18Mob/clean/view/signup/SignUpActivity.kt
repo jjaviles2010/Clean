@@ -115,6 +115,23 @@ class SignUpActivity : AppCompatActivity() {
             if (it != null)
                 showAddressInfo()
         })
+
+        signUpViewModel.latitude.observe(this, Observer {
+            if (it != null)
+                user.latitude = it
+        })
+
+        signUpViewModel.longitude.observe(this, Observer {
+            if (it != null)
+                user.longitude = it
+        })
+
+        signUpViewModel.isGeoInfoPopulated.observe(this, Observer {
+            if (it == true) {
+                submitData()
+            }
+        })
+
     }
 
 
@@ -137,7 +154,7 @@ class SignUpActivity : AppCompatActivity() {
 
         signUpViewModel.isUserSignUp.observe(this, Observer {
             if (it == true) {
-                submitData()
+                populateGeoInfo()
             } else {
                 Toast.makeText(this, getString(R.string.errorCreatingUserMsg), Toast.LENGTH_LONG).show()
             }
@@ -216,6 +233,9 @@ class SignUpActivity : AppCompatActivity() {
         signUpViewModel.insertUserRemote(user)
     }
 
+    private fun populateGeoInfo() {
+        signUpViewModel.getLatitudeLongitude("${user.street}, ${user.number}")
+    }
 
     override fun onPause() {
         super.onPause()
