@@ -1,5 +1,6 @@
 package com.fiap18Mob.clean.repository
 
+import com.fiap18Mob.clean.model.CleaningService
 import com.fiap18Mob.clean.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -10,12 +11,13 @@ import com.google.firebase.database.ValueEventListener
 class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
     val firebaseDB: FirebaseDatabase) : UserRepository {
 
-    private val firebaseReferenceNode = "users"
+    private val firebaseReferenceUserNode = "users"
+    private val firebaseReferenceCleaningServiceNode = "cleaningServices"
 
 
     override suspend fun insertUser(user: User, onComplete: (Boolean?) -> Unit,
                                     onError: (Throwable?) -> Unit) {
-        firebaseDB.getReference(firebaseReferenceNode)
+        firebaseDB.getReference(firebaseReferenceUserNode)
             .child(firebaseAuth.currentUser?.uid ?: "")
             .setValue(user)
             .addOnCompleteListener{
@@ -29,7 +31,7 @@ class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
 
     override fun getUser(cpf: String): User {
         var userResult: User = User()
-        firebaseDB.getReference(firebaseReferenceNode)
+        firebaseDB.getReference(firebaseReferenceUserNode)
             .child(firebaseAuth.currentUser?.uid ?: "")
             .addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {
@@ -53,6 +55,21 @@ class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
                     } else {
                         onError(it.exception)
                     }
+            }
+    }
+
+
+    fun insertCleaningService(cleaningService: CleaningService, onComplete: (Boolean?) -> Unit,
+                   onError: (Throwable?) -> Unit) {
+        firebaseDB.getReference("$firebaseReferenceUserNode/${firebaseAuth.currentUser?.uid}/$firebaseReferenceCleaningServiceNode")
+            .push()
+            .setValue(cleaningService)
+            .addOnCompleteListener{
+                if (it.isSuccessful) {
+                    onComplete(true)
+                } else {
+                    onError(it.exception)
+                }
             }
     }
 

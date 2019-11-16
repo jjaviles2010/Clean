@@ -58,4 +58,5 @@
     <string name="tvCleaningDate">Data da Limpeza :</string>
     <string name="btnSchedule">Agendar</string>
     <string name="tvCleaningTime">Hora da limpeza :</string>
+    <string name="cleaningServiceScheduledMsg">Serviço de limpeza agendado!</string>
 </resources>
