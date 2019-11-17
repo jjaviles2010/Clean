@@ -12,6 +12,19 @@ class ListServicesViewModel (val userRemoteRepository: UserRepositoryRemote) : V
     val isLoading: MutableLiveData<Boolean> = MutableLiveData()
 
     fun getCleaningServices() {
+        isLoading.value = true
+        userRemoteRepository.getCleaningServices(
+            onComplete = {
+                isLoading.value = false
+                services.value = it
+                messageError.value = ""
+            },
+            onError = {
+                services.value = emptyList()
+                messageError.value = it?.message
+                isLoading.value = false
+            }
+        )
     }
 
 }

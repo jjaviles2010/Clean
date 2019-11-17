@@ -10,6 +10,7 @@ import com.fiap18Mob.clean.utils.RemoteConfig
 import com.fiap18Mob.clean.utils.URLProvider
 import com.fiap18Mob.clean.view.cleanerDetail.CleanerDetailViewModel
 import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordViewModel
+import com.fiap18Mob.clean.view.listServices.ListServicesViewModel
 import com.fiap18Mob.clean.view.login.LoginViewModel
 import com.fiap18Mob.clean.view.signup.SignUpViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -26,6 +27,7 @@ val viewModelModule = module {
     viewModel { ForgotPasswordViewModel(get()) }
     viewModel { SignUpViewModel(get(), get(), get(), get()) }
     viewModel { CleanerDetailViewModel(get()) }
+    viewModel { ListServicesViewModel(get()) }
 }
 
 val uiModule = module {

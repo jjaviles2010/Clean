@@ -73,4 +73,22 @@ class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
             }
     }
 
+    fun getCleaningServices(onComplete: (List<CleaningService>?) -> Unit, onError: (Throwable?) -> Unit) {
+        var servicesResult: MutableList<CleaningService> = mutableListOf()
+
+        firebaseDB.getReference("$firebaseReferenceUserNode/${firebaseAuth.currentUser?.uid}/$firebaseReferenceCleaningServiceNode")
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+                    onError(Throwable("Erro ao carregar os serviços"))
+                }
+
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for (dataSnapshot in dataSnapshot?.getChildren()) {
+                        servicesResult.add(dataSnapshot.getValue(CleaningService::class.java)!!)
+                    }
+                    onComplete(servicesResult)
+                }
+            })
+    }
+
 }
