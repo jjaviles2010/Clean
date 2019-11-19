@@ -1,9 +1,12 @@
 package com.fiap18Mob.clean.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "user")
 class User(
     @PrimaryKey @ColumnInfo(name = "cpf") var cpf: String = "",
@@ -19,4 +22,4 @@ class User(
     var uf: String = "",
     var profile: String = "",
     var hourValue: Double = 0.0
-)
+): Parcelable
