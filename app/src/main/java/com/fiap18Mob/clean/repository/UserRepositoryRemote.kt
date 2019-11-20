@@ -1,5 +1,6 @@
 package com.fiap18Mob.clean.repository
 
+import android.content.ClipData
 import com.fiap18Mob.clean.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -57,6 +58,7 @@ class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
     }
 
     fun getUsersByProfile(profile: String, onComplete: (Boolean?) -> Unit, onError: (Throwable?) -> Unit): List<User> {
+
         var usersResult: MutableList<User> = mutableListOf()
 
         firebaseDB.getReference(firebaseReferenceNode)
