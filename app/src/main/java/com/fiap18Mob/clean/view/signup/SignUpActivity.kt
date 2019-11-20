@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.User
 import com.fiap18Mob.clean.repository.UserRepository
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : BaseActivity() {
 
     val signUpViewModel: SignUpViewModel by viewModel()
     private val user: User by inject()
@@ -115,6 +116,23 @@ class SignUpActivity : AppCompatActivity() {
             if (it != null)
                 showAddressInfo()
         })
+
+        signUpViewModel.latitude.observe(this, Observer {
+            if (it != null)
+                user.latitude = it
+        })
+
+        signUpViewModel.longitude.observe(this, Observer {
+            if (it != null)
+                user.longitude = it
+        })
+
+        signUpViewModel.isGeoInfoPopulated.observe(this, Observer {
+            if (it == true) {
+                submitData()
+            }
+        })
+
     }
 
 
@@ -137,7 +155,7 @@ class SignUpActivity : AppCompatActivity() {
 
         signUpViewModel.isUserSignUp.observe(this, Observer {
             if (it == true) {
-                submitData()
+                populateGeoInfo()
             } else {
                 Toast.makeText(this, getString(R.string.errorCreatingUserMsg), Toast.LENGTH_LONG).show()
             }
@@ -216,6 +234,9 @@ class SignUpActivity : AppCompatActivity() {
         signUpViewModel.insertUserRemote(user)
     }
 
+    private fun populateGeoInfo() {
+        signUpViewModel.getLatitudeLongitude("${user.street}, ${user.number}")
+    }
 
     override fun onPause() {
         super.onPause()

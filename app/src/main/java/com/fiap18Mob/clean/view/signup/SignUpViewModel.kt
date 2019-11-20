@@ -1,6 +1,7 @@
 package com.fiap18Mob.clean.view.signup
 
 import android.app.Application
+import android.location.Geocoder
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -13,6 +14,7 @@ import com.fiap18Mob.clean.utils.MessageUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
+import java.util.*
 
 class SignUpViewModel(application: Application,
                       val addressRepository: AddressRepository,
@@ -25,6 +27,9 @@ class SignUpViewModel(application: Application,
     val user: MutableLiveData<User> = MutableLiveData()
     val isUserSignUp: MutableLiveData<Boolean> = MutableLiveData()
     val isUserCreated: MutableLiveData<Boolean> = MutableLiveData()
+    val latitude: MutableLiveData<Double> = MutableLiveData()
+    val longitude: MutableLiveData<Double> = MutableLiveData()
+    val isGeoInfoPopulated: MutableLiveData<Boolean> = MutableLiveData()
 
     fun getAddress(cep: String) {
         isLoading.value = true
@@ -82,5 +87,16 @@ class SignUpViewModel(application: Application,
             })
     }
 
+
+    fun getLatitudeLongitude(address: String) {
+
+        val geocoder = Geocoder(getApplication<Application>().applicationContext, Locale.getDefault())
+        val addressGeocoding = geocoder.getFromLocationName(address, 1)
+
+        latitude.value = addressGeocoding.first().latitude
+        longitude.value = addressGeocoding.first().longitude
+
+        isGeoInfoPopulated.value = true
+    }
 
 }

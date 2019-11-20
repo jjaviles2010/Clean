@@ -3,11 +3,14 @@ package com.fiap18Mob.clean.di
 import androidx.room.Room
 import com.fiap18Mob.clean.api.AddressService
 import com.fiap18Mob.clean.dao.CleanRoomDatabase
+import com.fiap18Mob.clean.model.CleaningService
 import com.fiap18Mob.clean.model.User
 import com.fiap18Mob.clean.repository.*
 import com.fiap18Mob.clean.utils.RemoteConfig
 import com.fiap18Mob.clean.utils.URLProvider
+import com.fiap18Mob.clean.view.cleanerDetail.CleanerDetailViewModel
 import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordViewModel
+import com.fiap18Mob.clean.view.listServices.ListServicesViewModel
 import com.fiap18Mob.clean.view.login.LoginViewModel
 import com.fiap18Mob.clean.view.signup.SignUpViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -23,10 +26,13 @@ val viewModelModule = module {
     viewModel { LoginViewModel(get(), get(), get()) }
     viewModel { ForgotPasswordViewModel(get()) }
     viewModel { SignUpViewModel(get(), get(), get(), get()) }
+    viewModel { CleanerDetailViewModel(get()) }
+    viewModel { ListServicesViewModel(get()) }
 }
 
 val uiModule = module {
     factory { User() }
+    factory { CleaningService() }
 }
 
 val repositoryModule = module {

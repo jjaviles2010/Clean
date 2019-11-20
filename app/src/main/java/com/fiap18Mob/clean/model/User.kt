@@ -21,5 +21,7 @@ class User(
     var city: String = "",
     var uf: String = "",
     var profile: String = "",
-    var hourValue: Double = 0.0
+    var hourValue: Double = 0.0,
+    var latitude: Double = 0.0,
+    var longitude: Double = 0.0
 ): Parcelable

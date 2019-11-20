@@ -1,100 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.cleanerDetail.CleanerDetailActivity">
 
-    <TextView
-        android:id="@+id/tvProfessionalInfo"
-        style="@style/custom_label_bold"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/tvProfessional_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvNameLbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/tvNameLbl"
-        style="@style/custom_label_bold"
-        app:layout_constraintStart_toStartOf="@+id/tvProfessionalInfo"
-        app:layout_constraintTop_toBottomOf="@+id/tvProfessionalInfo" />
+        <TextView
+            android:id="@+id/tvProfessionalInfo"
+            style="@style/custom_label_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/tvProfessional_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvNameValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/tvNameLbl"
-        app:layout_constraintTop_toBottomOf="@+id/tvProfessionalInfo"
-        tools:text="Lucia Pereira Santos" />
+        <TextView
+            android:id="@+id/tvNameLbl"
+            style="@style/custom_label_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tvNameLbl"
+            app:layout_constraintStart_toStartOf="@+id/tvProfessionalInfo"
+            app:layout_constraintTop_toBottomOf="@+id/tvProfessionalInfo" />
 
-    <TextView
-        android:id="@+id/tvPhoneNumLbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/tvPhoneLbl"
-        style="@style/custom_label_bold"
-        app:layout_constraintStart_toStartOf="@+id/tvNameLbl"
-        app:layout_constraintTop_toBottomOf="@+id/tvNameLbl" />
+        <TextView
+            android:id="@+id/tvNameValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toEndOf="@+id/tvNameLbl"
+            app:layout_constraintTop_toBottomOf="@+id/tvProfessionalInfo"
+            tools:text="Lucia Pereira Santos" />
 
-    <TextView
-        android:id="@+id/tvPhoneNumValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/tvPhoneNumLbl"
-        app:layout_constraintTop_toBottomOf="@+id/tvNameValue"
-        tools:text="(11) 97564-8763" />
+        <TextView
+            android:id="@+id/tvPhoneNumLbl"
+            style="@style/custom_label_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tvPhoneLbl"
+            app:layout_constraintStart_toStartOf="@+id/tvNameLbl"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameLbl" />
 
-    <TextView
-        android:id="@+id/tvHourValLbl"
-        style="@style/custom_label_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/hour_value"
-        app:layout_constraintStart_toStartOf="@+id/tvPhoneNumLbl"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumLbl" />
+        <TextView
+            android:id="@+id/tvPhoneNumValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toEndOf="@+id/tvPhoneNumLbl"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameValue"
+            tools:text="(11) 97564-8763" />
 
-    <TextView
-        android:id="@+id/tvHourValValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        tools:text="150.45"
-        app:layout_constraintStart_toEndOf="@+id/tvHourValLbl"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumValue" />
+        <TextView
+            android:id="@+id/tvHourValLbl"
+            style="@style/custom_label_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/hour_value"
+            app:layout_constraintStart_toStartOf="@+id/tvPhoneNumLbl"
+            app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumLbl" />
 
-    <TextView
-        android:id="@+id/tvAddress"
-        style="@style/custom_label_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/tvAddress"
-        app:layout_constraintStart_toStartOf="@+id/tvHourValLbl"
-        app:layout_constraintTop_toBottomOf="@+id/tvHourValLbl" />
+        <TextView
+            android:id="@+id/tvHourValValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toEndOf="@+id/tvHourValLbl"
+            app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumValue"
+            tools:text="150.45" />
 
-    <TextView
-        android:id="@+id/tvFullAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        tools:text="Rua Inhambu 954, AP 35B, Vila Uberabinha, São Paulo, SP"
-        app:layout_constraintStart_toStartOf="@+id/tvAddress"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvAddress"
+            style="@style/custom_label_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/tvAddress"
+            app:layout_constraintStart_toStartOf="@+id/tvHourValLbl"
+            app:layout_constraintTop_toBottomOf="@+id/tvHourValLbl" />
+
+        <TextView
+            android:id="@+id/tvFullAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/tvAddress"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddress"
+            tools:text="Rua Inhambu 954, AP 35B, Vila Uberabinha, São Paulo, SP" />
+
+        <EditText
+            android:id="@+id/etScheduleDate"
+            style="@style/custom_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="date"
+            app:layout_constraintStart_toStartOf="@+id/tvServiceDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvServiceDate" />
+
+        <TextView
+            android:id="@+id/tvServiceDate"
+            style="@style/custom_label_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/tvCleaningDate"
+            app:layout_constraintStart_toStartOf="@+id/tvFullAddress"
+            app:layout_constraintTop_toBottomOf="@+id/tvFullAddress" />
+
+        <Button
+            android:id="@+id/btnDatePicker"
+            style="@style/custom_button"
+            android:layout_width="43dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+
+            android:background="@drawable/ic_date_range_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/etScheduleDate"
+            app:layout_constraintStart_toEndOf="@+id/etScheduleDate"
+            app:layout_constraintTop_toTopOf="@+id/etScheduleDate" />
+
+        <Button
+            android:id="@+id/btnScheduleService"
+            style="@style/custom_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/btnSchedule"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/etCleaningTime"
+            app:layout_constraintTop_toBottomOf="@+id/etCleaningTime" />
+
+        <EditText
+            android:id="@+id/etCleaningTime"
+            style="@style/custom_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintEnd_toEndOf="@+id/etScheduleDate"
+            app:layout_constraintStart_toStartOf="@+id/tvCleaningTime"
+            app:layout_constraintTop_toBottomOf="@+id/tvCleaningTime" />
+
+        <Button
+            android:id="@+id/btnTimePicker"
+            style="@style/custom_button"
+            android:layout_width="43dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+
+            android:background="@drawable/ic_access_time_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/etCleaningTime"
+            app:layout_constraintStart_toEndOf="@+id/etCleaningTime"
+            app:layout_constraintTop_toTopOf="@+id/etCleaningTime" />
+
+        <TextView
+            android:id="@+id/tvCleaningTime"
+            style="@style/custom_label_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tvCleaningTime"
+            app:layout_constraintStart_toStartOf="@+id/etScheduleDate"
+            app:layout_constraintTop_toBottomOf="@+id/etScheduleDate" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include layout="@layout/include_loading" />
+
+</FrameLayout>

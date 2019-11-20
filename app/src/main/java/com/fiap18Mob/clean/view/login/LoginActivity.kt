@@ -7,14 +7,18 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.crashlytics.android.Crashlytics
+import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
+import com.fiap18Mob.clean.utils.CleanTracker
 import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordActivity
 import com.fiap18Mob.clean.view.main.MainActivity
 import com.fiap18Mob.clean.view.signup.SignUpActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private val newUserRequestCode = 1
     private val loginViewModel: LoginViewModel by viewModel()
@@ -24,6 +28,22 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         loginViewModel.initialAuth()
+
+        configureObservers()
+        configureListeners()
+
+        loginViewModel.checkRemoteConfig()
+    }
+
+    private fun configureObservers() {
+        loginViewModel.isLoading.observe(this, Observer {
+            if (it == true) {
+                containerLoading.visibility = View.VISIBLE
+            } else {
+                containerLoading.visibility = View.GONE
+            }
+        })
+
         loginViewModel.alreadyAuth.observe(this, Observer {
             if (it) {
                 goToMain()
@@ -57,14 +77,23 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
+        loginViewModel.authorized.observe(this, Observer {
+            if (it) {
+                //Grava o usuário que fez o login.
+                val bundle = Bundle()
+                bundle.putString("EVENT_NAME", "LOGIN")
+                bundle.putString("USER", edEmail.text.toString());
+                CleanTracker.trackEvent(this, bundle)
+                goToMain()
+            }
+        })
+
+    }
+
+    private fun configureListeners() {
         btEnter.setOnClickListener {
             if (edEmail.text.toString().trim().isNotEmpty() && edPassword.text.toString().trim().isNotEmpty()) {
                 loginViewModel.auth(edEmail.text.toString().trim(), edPassword.text.toString().trim())
-                loginViewModel.authorized.observe(this, Observer {
-                    if (it) {
-                        goToMain()
-                    }
-                })
             } else {
                 Toast.makeText(
                     this@LoginActivity, getString(R.string.emailPasswordRequired), Toast.LENGTH_SHORT
@@ -84,7 +113,10 @@ class LoginActivity : AppCompatActivity() {
             goResetPassword()
         }
 
-        loginViewModel.checkRemoteConfig()
+        btCrash.setOnClickListener {
+            Crashlytics.log("Erro na tela de login.")
+            Crashlytics.getInstance().crash()
+        }
     }
 
     private fun goToSignUp(userType: String) {
