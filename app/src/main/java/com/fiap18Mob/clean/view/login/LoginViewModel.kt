@@ -16,6 +16,7 @@ class LoginViewModel (val mAuth: FirebaseAuth,
     var messageError: MutableLiveData<String> = MutableLiveData()
     var clientRegistrationActive: MutableLiveData<Boolean> = MutableLiveData()
     var cleanerRegistrationActive: MutableLiveData<Boolean> = MutableLiveData()
+    val isLoading: MutableLiveData<Boolean> = MutableLiveData()
 
     fun initialAuth() {
         //ATENÇÃO: remover esta linha. Ela está ai para forçar um login todas as vezes que o app é aberto
@@ -31,6 +32,8 @@ class LoginViewModel (val mAuth: FirebaseAuth,
     }
 
     fun auth(emailAddress: String, password: String) {
+        isLoading.value = true
+
         mAuth.signInWithEmailAndPassword(
             emailAddress,
             password
@@ -40,6 +43,7 @@ class LoginViewModel (val mAuth: FirebaseAuth,
                 firebaseSaveToken()
                 messageError.value = it.exception?.message
             }
+            isLoading.value = false
         }
 
     }

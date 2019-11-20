@@ -13,6 +13,7 @@ import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordActivity
 import com.fiap18Mob.clean.view.main.MainActivity
 import com.fiap18Mob.clean.view.signup.SignUpActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -33,6 +34,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun configureObservers() {
+        loginViewModel.isLoading.observe(this, Observer {
+            if (it == true) {
+                containerLoading.visibility = View.VISIBLE
+            } else {
+                containerLoading.visibility = View.GONE
+            }
+        })
+
         loginViewModel.alreadyAuth.observe(this, Observer {
             if (it) {
                 goToMain()
