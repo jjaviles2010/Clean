@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.User
 import com.fiap18Mob.clean.repository.UserRepository
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : BaseActivity() {
 
     val signUpViewModel: SignUpViewModel by viewModel()
     private val user: User by inject()

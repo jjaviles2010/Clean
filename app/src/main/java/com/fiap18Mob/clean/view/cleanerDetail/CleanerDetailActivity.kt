@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.CleaningService
 import kotlinx.android.synthetic.main.activity_cleaner_detail.*
@@ -16,7 +17,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-class CleanerDetailActivity : AppCompatActivity() {
+class CleanerDetailActivity : BaseActivity() {
 
     val cleanerDetailViewModel : CleanerDetailViewModel by viewModel()
     private val cleaningService : CleaningService by inject()

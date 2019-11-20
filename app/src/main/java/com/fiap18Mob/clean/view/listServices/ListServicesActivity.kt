@@ -8,13 +8,14 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.view.cleanerDetail.CleanerDetailActivity
 import kotlinx.android.synthetic.main.activity_list_services.*
 import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ListServicesActivity : AppCompatActivity() {
+class ListServicesActivity : BaseActivity() {
 
     val listServicesViewModel: ListServicesViewModel by viewModel()
 

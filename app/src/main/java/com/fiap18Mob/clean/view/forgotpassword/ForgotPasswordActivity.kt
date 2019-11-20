@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import kotlinx.android.synthetic.main.activity_forgot_password.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ForgotPasswordActivity : AppCompatActivity() {
+class ForgotPasswordActivity : BaseActivity() {
 
     private val forgotPasswordViewModel: ForgotPasswordViewModel by viewModel()
 

@@ -6,11 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.view.login.LoginActivity
 import com.fiap18Mob.clean.view.main.MainActivity
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreenActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
