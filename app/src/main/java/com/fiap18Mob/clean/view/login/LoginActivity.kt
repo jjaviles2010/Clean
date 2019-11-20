@@ -25,6 +25,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         loginViewModel.initialAuth()
+
+        configureObservers()
+        configureListeners()
+
+        loginViewModel.checkRemoteConfig()
+    }
+
+    private fun configureObservers() {
         loginViewModel.alreadyAuth.observe(this, Observer {
             if (it) {
                 goToMain()
@@ -57,7 +65,9 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         })
+    }
 
+    private fun configureListeners() {
         btEnter.setOnClickListener {
             if (edEmail.text.toString().trim().isNotEmpty() && edPassword.text.toString().trim().isNotEmpty()) {
                 loginViewModel.auth(edEmail.text.toString().trim(), edPassword.text.toString().trim())
@@ -89,8 +99,6 @@ class LoginActivity : AppCompatActivity() {
             Crashlytics.log("Erro na tela de login.")
             Crashlytics.getInstance().crash()
         }
-
-        loginViewModel.checkRemoteConfig()
     }
 
     private fun goToSignUp(userType: String) {
