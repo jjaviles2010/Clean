@@ -7,12 +7,14 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
+import com.fiap18mob.mylib.CustomToast
 import kotlinx.android.synthetic.main.activity_forgot_password.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ForgotPasswordActivity : BaseActivity() {
 
     private val forgotPasswordViewModel: ForgotPasswordViewModel by viewModel()
+    private val customToast = CustomToast()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +28,7 @@ class ForgotPasswordActivity : BaseActivity() {
                 msg = getString(R.string.errorTryAgain)
             }
 
-            Toast.makeText(
-                this@ForgotPasswordActivity , msg,
-                Toast.LENGTH_SHORT
-            ).show()
+            customToast.showToast(this@ForgotPasswordActivity, msg, CustomToast.ERROR)
 
             if (it) {
                 val handle = Handler()
@@ -44,16 +43,10 @@ class ForgotPasswordActivity : BaseActivity() {
                 if (android.util.Patterns.EMAIL_ADDRESS.matcher(edEmailReset.text.toString().trim()).matches()) {
                     forgotPasswordViewModel.forgotPassword(edEmailReset.text.toString().trim())
                 } else {
-                    Toast.makeText(
-                        this@ForgotPasswordActivity, R.string.invalidEmail,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    customToast.showToast(this@ForgotPasswordActivity, getString(R.string.invalidEmail), CustomToast.ERROR)
                 }
             } else {
-                Toast.makeText(
-                    this@ForgotPasswordActivity, R.string.emailRequired,
-                    Toast.LENGTH_SHORT
-                ).show()
+                customToast.showToast(this@ForgotPasswordActivity, getString(R.string.emailRequired), CustomToast.ERROR)
             }
         }
     }

@@ -2,10 +2,8 @@ package com.fiap18Mob.clean.view.login
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.crashlytics.android.Crashlytics
 import com.fiap18Mob.clean.BaseActivity
@@ -14,6 +12,7 @@ import com.fiap18Mob.clean.utils.CleanTracker
 import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordActivity
 import com.fiap18Mob.clean.view.main.MainActivity
 import com.fiap18Mob.clean.view.signup.SignUpActivity
+import com.fiap18mob.mylib.CustomToast
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -22,6 +21,7 @@ class LoginActivity : BaseActivity() {
 
     private val newUserRequestCode = 1
     private val loginViewModel: LoginViewModel by viewModel()
+    private val customToast = CustomToast()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +52,7 @@ class LoginActivity : BaseActivity() {
 
         loginViewModel.messageError.observe(this, Observer {
             if (it != null) {
-                Toast.makeText(
-                    this@LoginActivity, it,
-                    Toast.LENGTH_SHORT
-                ).show()
+                customToast.showToast(this@LoginActivity, it, CustomToast.ERROR)
             }
         })
 
@@ -95,9 +92,7 @@ class LoginActivity : BaseActivity() {
             if (edEmail.text.toString().trim().isNotEmpty() && edPassword.text.toString().trim().isNotEmpty()) {
                 loginViewModel.auth(edEmail.text.toString().trim(), edPassword.text.toString().trim())
             } else {
-                Toast.makeText(
-                    this@LoginActivity, getString(R.string.emailPasswordRequired), Toast.LENGTH_SHORT
-                ).show()
+                customToast.showToast(this@LoginActivity, getString(R.string.emailPasswordRequired), CustomToast.ERROR)
             }
         }
 
