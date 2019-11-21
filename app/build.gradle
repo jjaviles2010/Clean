@@ -84,6 +84,8 @@ dependencies {
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.androidxArchVersion"
     // ViewModel Kotlin support
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
+    //MyLib
+    implementation 'com.github.lecosas:mylib:v1.1'
     // Coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
