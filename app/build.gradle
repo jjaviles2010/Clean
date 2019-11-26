@@ -58,6 +58,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-config:18.0.0'
     //Biblioteca Firebase Cloud Messaging
     implementation 'com.google.firebase:firebase-messaging:19.0.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
@@ -89,6 +90,7 @@ dependencies {
     // Coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 
 
 }

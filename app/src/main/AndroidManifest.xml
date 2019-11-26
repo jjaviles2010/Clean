@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.fiap18Mob.clean">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <!-- Allows the API to use the Global Positioning System (GPS) to determine the device's location to within a very small area. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- Allows the API to use WiFi or mobile cell data (or both) to determine the device's location. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
 
     <application
         android:name=".MyApplication"
@@ -9,7 +26,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="ExtraText,GoogleAppIndexingWarning">
+
+        <!--
+     The API key for Google Maps-based APIs is defined as a string resource.
+     (See the file "res/values/google_maps_api.xml").
+     Note that the API key is linked to the encryption key used to sign the APK.
+     You need a different API key for each encryption key, including the release key that is used to
+     sign the APK for publishing.
+     You can define the keys for the debug and release targets in src/debug/ and src/release/.
+-->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC_8aUSTE9MA_C6iNbjWkh4IH5e8ZTjEog" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".view.maps.MapsActivity" android:label="@string/title_activity_maps"></activity>
         <activity android:name=".view.usersList.RecyclerViewActivity"></activity>
         <activity android:name=".view.cleanerDetail.CleanerDetailActivity" />
         <activity android:name=".view.forgotpassword.ForgotPasswordActivity" />
