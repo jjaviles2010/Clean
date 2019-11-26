@@ -6,6 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class CleaningService (
     var cleanerCPF: String = "",
+    var cleanerName: String = "",
     var cleaningStatus: String = "",
     var scheduledTime: Long= 0
     ) : Parcelable

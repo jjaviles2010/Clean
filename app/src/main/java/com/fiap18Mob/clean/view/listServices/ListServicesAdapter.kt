@@ -6,8 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.CleaningService
+import com.fiap18Mob.clean.utils.ServiceStatus
+import com.fiap18Mob.clean.utils.toDateTime
 import kotlinx.android.synthetic.main.activity_cleaner_detail.view.*
 import kotlinx.android.synthetic.main.services_list_item.view.*
+import java.util.*
 
 class ListServicesAdapter(
     val services: List<CleaningService>,
@@ -32,9 +35,9 @@ class ListServicesAdapter(
 
         fun bindView(service: CleaningService,
                      clickListener: (CleaningService) -> Unit) = with(itemView) {
-            tvCleanerName.text = service.cleanerCPF
-            tvScheduleTime.text = service.scheduledTime.toString()
-            tvStatus.text = service.cleaningStatus
+            tvCleanerName.text = service.cleanerName
+            tvScheduleTime.text = service.scheduledTime.toDateTime()
+            tvStatus.text = ServiceStatus.valueOf(service.cleaningStatus).status
             setOnClickListener { clickListener(service) }
         }
     }

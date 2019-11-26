@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.CleaningService
+import com.fiap18Mob.clean.utils.ServiceStatus
 import kotlinx.android.synthetic.main.activity_cleaner_detail.*
 import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.ext.android.inject
@@ -90,8 +91,9 @@ class CleanerDetailActivity : BaseActivity() {
     }
 
     private fun populateServiceInfo() {
+        cleaningService.cleanerName = "Carla Peres"
         cleaningService.cleanerCPF = "32424523242"
-        cleaningService.cleaningStatus = "OPEN"
+        cleaningService.cleaningStatus = ServiceStatus.OPENED.status
         cleaningService.scheduledTime = getScheduleDate()
     }
 
