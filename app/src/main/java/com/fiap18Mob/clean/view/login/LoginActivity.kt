@@ -3,6 +3,7 @@ package com.fiap18Mob.clean.view.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.lifecycle.Observer
 import com.crashlytics.android.Crashlytics
@@ -15,6 +16,8 @@ import com.fiap18Mob.clean.view.signup.SignUpActivity
 import com.fiap18mob.mylib.CustomToast
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.include_loading.*
+import kotlinx.android.synthetic.main.include_welcome_message.*
+import kotlinx.android.synthetic.main.include_welcome_message.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity() {
@@ -27,12 +30,11 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        loginViewModel.checkRemoteConfig()
         loginViewModel.initialAuth()
 
         configureObservers()
         configureListeners()
-
-        loginViewModel.checkRemoteConfig()
     }
 
     private fun configureObservers() {
@@ -46,7 +48,15 @@ class LoginActivity : BaseActivity() {
 
         loginViewModel.alreadyAuth.observe(this, Observer {
             if (it) {
-                goToMain()
+                if (!loginViewModel.welcomeMessage.isNullOrEmpty()) {
+                    welcomeMessage.visibility = View.VISIBLE
+                    welcomeMessage.tvMessage.text = loginViewModel.welcomeMessage
+
+                    val handle = Handler()
+                    handle.postDelayed({goToMain()}, 5000)
+                } else {
+                    goToMain()
+                }
             }
         })
 
@@ -81,7 +91,16 @@ class LoginActivity : BaseActivity() {
                 bundle.putString("EVENT_NAME", "LOGIN")
                 bundle.putString("USER", edEmail.text.toString());
                 CleanTracker.trackEvent(this, bundle)
-                goToMain()
+
+                if (!loginViewModel.welcomeMessage.isNullOrEmpty()) {
+                    welcomeMessage.visibility = View.VISIBLE
+                    welcomeMessage.tvMessage.text = loginViewModel.welcomeMessage
+
+                    val handle = Handler()
+                    handle.postDelayed({goToMain()}, 5000)
+                } else {
+                    goToMain()
+                }
             }
         })
 

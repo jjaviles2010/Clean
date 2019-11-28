@@ -16,12 +16,16 @@ class LoginViewModel (val mAuth: FirebaseAuth,
     var messageError: MutableLiveData<String> = MutableLiveData()
     var clientRegistrationActive: MutableLiveData<Boolean> = MutableLiveData()
     var cleanerRegistrationActive: MutableLiveData<Boolean> = MutableLiveData()
+    var welcomeMessage = ""
     val isLoading: MutableLiveData<Boolean> = MutableLiveData()
 
     fun initialAuth() {
         //ATENÇÃO: remover esta linha. Ela está ai para forçar um login todas as vezes que o app é aberto
         //Perguntar para o Heider, porque mesmo que exclua ou inative o usuário no Firebase, o login continua ativo.
         mAuth.signOut()
+
+        //Tentativa de forçar a atualização do usuário (comentário acima), mas continua da msm forma.
+        mAuth.currentUser?.reload()
 
         if (mAuth.currentUser != null) {
             firebaseSaveToken()
@@ -70,6 +74,14 @@ class LoginViewModel (val mAuth: FirebaseAuth,
                         cleanerRegistrationActive.value = true
                     } else {
                         cleanerRegistrationActive.value = false
+                    }
+
+                    val welcomeMessageAux = RemoteConfig.getFirebaseRemoteConfig()
+                        .getString("welcome_message")
+                    welcomeMessage = if (welcomeMessageAux.isNullOrEmpty()) {
+                        ""
+                    } else {
+                        welcomeMessageAux
                     }
                 }
             }
