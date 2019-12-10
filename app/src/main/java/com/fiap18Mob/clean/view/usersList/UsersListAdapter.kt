@@ -8,7 +8,10 @@ import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.User
 import kotlinx.android.synthetic.main.users_list_item.view.*
 
-class MainAdapter( val users: List<User> ): RecyclerView.Adapter<CustomViewHolder>() {
+class UsersListAdapter(
+    val users: List<User>,
+    val clickListener: (User) -> Unit
+): RecyclerView.Adapter<UsersListAdapter.UserViewHolder>() {
 
     //val userRemoteRep = UserRepositoryRemote(FirebaseAuth.getInstance(), FirebaseDatabase.getInstance())
     //val infoClients = userRemoteRep.getUsersByProfile("CLEANER", onComplete = { }, onError = { })
@@ -18,24 +21,26 @@ class MainAdapter( val users: List<User> ): RecyclerView.Adapter<CustomViewHolde
         return users.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val cellForRow = layoutInflater.inflate(R.layout.users_list_item, parent, false)
 
-        return CustomViewHolder(cellForRow)
+        return UserViewHolder(cellForRow)
     }
 
-    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val userInfo = users.get(position)
-        holder.view.tvUserName.text = userInfo.nome
-        holder.view.tvDocument.text = userInfo.cpf
-        holder.view.tvPrice.text = userInfo.hourValue.toString()
+        holder.bindView(userInfo, clickListener)
+
     }
 
-}
-
-
-
-class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
-
+    class UserViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+        fun bindView(userInfo: User,
+                     clickListener: (User) -> Unit) = with(itemView) {
+            tvUserName.text = userInfo.nome
+            tvDocument.text = userInfo.cpf
+            tvPrice.text = userInfo.hourValue.toString()
+            setOnClickListener { clickListener(userInfo) }
+        }
+    }
 }
