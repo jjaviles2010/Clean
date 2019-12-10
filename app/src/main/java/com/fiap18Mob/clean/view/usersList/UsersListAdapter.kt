@@ -6,10 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.User
-import com.fiap18Mob.clean.repository.UserRepositoryRemote
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.user_row.view.*
+import kotlinx.android.synthetic.main.users_list_item.view.*
 
 class MainAdapter( val users: List<User> ): RecyclerView.Adapter<CustomViewHolder>() {
 
@@ -23,14 +20,16 @@ class MainAdapter( val users: List<User> ): RecyclerView.Adapter<CustomViewHolde
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val cellForRow = layoutInflater.inflate(R.layout.user_row, parent, false)
+        val cellForRow = layoutInflater.inflate(R.layout.users_list_item, parent, false)
 
         return CustomViewHolder(cellForRow)
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val userInfo = users.get(position)
-        holder.view.textViewName.text = userInfo.nome
+        holder.view.tvUserName.text = userInfo.nome
+        holder.view.tvDocument.text = userInfo.cpf
+        holder.view.tvPrice.text = userInfo.hourValue.toString()
     }
 
 }

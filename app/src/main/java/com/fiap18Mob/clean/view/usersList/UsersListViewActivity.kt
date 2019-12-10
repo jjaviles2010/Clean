@@ -7,22 +7,23 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fiap18Mob.clean.R
-import kotlinx.android.synthetic.main.activity_recycler_view.*
+import kotlinx.android.synthetic.main.activity_users_list.*
 import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class RecyclerViewActivity : AppCompatActivity() {
+class UsersListViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val recyclerViewModel: RecyclerViewModel by viewModel()
+        val usersListViewModel: UsersListViewModel by viewModel()
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recycler_view)
+        setContentView(R.layout.activity_users_list)
 
 
-        recyclerViewModel.getUserList()
-        recyclerViewModel.isLoading.observe(this, Observer {
+        usersListViewModel.getUserList()
+
+        usersListViewModel.isLoading.observe(this, Observer {
             if (it == true) {
                 containerLoading.visibility = View.VISIBLE
             } else {
@@ -30,13 +31,13 @@ class RecyclerViewActivity : AppCompatActivity() {
             }
         })
 
-        recyclerViewModel.messageError.observe(this, Observer {
+        usersListViewModel.messageError.observe(this, Observer {
             if (it != "") {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
             }
         })
 
-        recyclerViewModel.users.observe(this, Observer {
+        usersListViewModel.users.observe(this, Observer {
             recyclerView_Main.adapter = MainAdapter(
                 it
             )

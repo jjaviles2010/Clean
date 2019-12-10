@@ -2,15 +2,13 @@ package com.fiap18Mob.clean.view.main
 
 import android.Manifest
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.utils.PermissionUtils
 import com.fiap18Mob.clean.view.about.AboutActivity
-import com.fiap18Mob.clean.view.usersList.RecyclerViewActivity
-import com.fiap18Mob.clean.view.cleanerDetail.CleanerDetailActivity
+import com.fiap18Mob.clean.view.usersList.UsersListViewActivity
 import com.fiap18Mob.clean.view.listServices.ListServicesActivity
 import com.fiap18Mob.clean.view.maps.MapsActivity
 import kotlinx.android.synthetic.main.activity_home.*
@@ -29,7 +27,7 @@ class MainActivity : BaseActivity() {
             Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
         btSearch.setOnClickListener {
-            startActivity(Intent(this@MainActivity, RecyclerViewActivity::class.java))
+            startActivity(Intent(this@MainActivity, UsersListViewActivity::class.java))
         }
 
         btSchedules.setOnClickListener {

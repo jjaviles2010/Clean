@@ -46,7 +46,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".view.maps.MapsActivity" android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".view.usersList.RecyclerViewActivity"></activity>
+        <activity android:name=".view.usersList.UsersListViewActivity"></activity>
         <activity android:name=".view.cleanerDetail.CleanerDetailActivity" />
         <activity android:name=".view.forgotpassword.ForgotPasswordActivity" />
         <activity android:name=".view.listServices.ListServicesActivity"></activity>
