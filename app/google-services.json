@@ -21,10 +21,6 @@
             "package_name": "com.fiap18Mob.clean",
             "certificate_hash": "8c060819d9d78766f2f88d4575c4b262622e6b1a"
           }
-        },
-        {
-          "client_id": "808528020677-0u905q08mvisedasokm85q7lj47ic567.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
@@ -34,12 +30,35 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "808528020677-0u905q08mvisedasokm85q7lj47ic567.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808528020677:android:0b12e7f7cb7658e0bbdcac",
+        "android_client_info": {
+          "package_name": "com.fiap18Mob.clean.red"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808528020677-r6anookgjcn08voc51nveo6479tova56.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fiap18Mob.clean.red",
+            "certificate_hash": "8c060819d9d78766f2f88d4575c4b262622e6b1a"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbiFISjUaK26TDLKMr6dHbf3PDgAxzwmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
         }
       }
     }
