@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.cleanerDetail.CleanerDetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvProfessionalInfo"
+                style="@style/custom_label_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/tvProfessionalInfo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvNameLbl"
+                style="@style/custom_label_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tvNameLbl"
+                app:layout_constraintStart_toStartOf="@+id/tvProfessionalInfo"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfessionalInfo" />
+
+            <TextView
+                android:id="@+id/tvProfessionalName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toEndOf="@+id/tvNameLbl"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfessionalInfo"
+                tools:text="Lucia Pereira Santos" />
+
+            <TextView
+                android:id="@+id/tvPhoneNumLbl"
+                style="@style/custom_label_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tvPhoneLbl"
+                app:layout_constraintStart_toStartOf="@+id/tvNameLbl"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameLbl" />
+
+            <TextView
+                android:id="@+id/tvCleanerPhoneNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toEndOf="@+id/tvPhoneNumLbl"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfessionalName"
+                tools:text="(11) 97564-8763" />
+
+            <TextView
+                android:id="@+id/tvHourValLbl"
+                style="@style/custom_label_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/hour_value"
+                app:layout_constraintStart_toStartOf="@+id/tvPhoneNumLbl"
+                app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumLbl" />
+
+            <TextView
+                android:id="@+id/tvCleanerHourVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toEndOf="@+id/tvHourValLbl"
+                app:layout_constraintTop_toBottomOf="@+id/tvCleanerPhoneNum"
+                tools:text="150.45" />
+
+            <EditText
+                android:id="@+id/etServScheduleDate"
+                style="@style/custom_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:inputType="date"
+                app:layout_constraintStart_toStartOf="@+id/tvServiceDate"
+                app:layout_constraintTop_toBottomOf="@+id/tvServiceDate" />
+
+            <TextView
+                android:id="@+id/tvServiceDate"
+                style="@style/custom_label_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tvCleaningDate"
+                app:layout_constraintStart_toStartOf="@+id/tvServiceInfo"
+                app:layout_constraintTop_toBottomOf="@+id/tvServiceInfo" />
+
+            <Button
+                android:id="@+id/btnServDatePicker"
+                style="@style/custom_button"
+                android:layout_width="43dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="8dp"
+
+                android:background="@drawable/ic_date_range_black_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/etServScheduleDate"
+                app:layout_constraintStart_toEndOf="@+id/etServScheduleDate"
+                app:layout_constraintTop_toTopOf="@+id/etServScheduleDate" />
+
+            <Button
+                android:id="@+id/btnUpdateService"
+                style="@style/custom_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/btnUpdateService"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintStart_toStartOf="@+id/etCleanServiceTime"
+                app:layout_constraintTop_toBottomOf="@+id/spServiceStatus" />
+
+            <EditText
+                android:id="@+id/etCleanServiceTime"
+                style="@style/custom_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:inputType="time"
+                app:layout_constraintEnd_toEndOf="@+id/etServScheduleDate"
+                app:layout_constraintStart_toStartOf="@+id/tvCleaningTime"
+                app:layout_constraintTop_toBottomOf="@+id/tvCleaningTime" />
+
+            <Button
+                android:id="@+id/btnTimePicker"
+                style="@style/custom_button"
+                android:layout_width="43dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="8dp"
+
+                android:background="@drawable/ic_access_time_black_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/etCleanServiceTime"
+                app:layout_constraintStart_toEndOf="@+id/etCleanServiceTime"
+                app:layout_constraintTop_toTopOf="@+id/etCleanServiceTime" />
+
+            <TextView
+                android:id="@+id/tvCleaningTime"
+                style="@style/custom_label_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tvCleaningTime"
+                app:layout_constraintStart_toStartOf="@+id/etServScheduleDate"
+                app:layout_constraintTop_toBottomOf="@+id/etServScheduleDate" />
+
+            <TextView
+                android:id="@+id/tvServiceInfo"
+                style="@style/custom_label_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/tvServiceInfo"
+                app:layout_constraintStart_toStartOf="@+id/tvHourValLbl"
+                app:layout_constraintTop_toBottomOf="@+id/tvHourValLbl" />
+
+            <TextView
+                android:id="@+id/tvServiceStatus"
+                style="@style/custom_label_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tvServiceStatus"
+                app:layout_constraintStart_toStartOf="@+id/etCleanServiceTime"
+                app:layout_constraintTop_toBottomOf="@+id/etCleanServiceTime" />
+
+            <Spinner
+                android:id="@+id/spServiceStatus"
+                style="@style/custom_spinner"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@+id/tvServiceStatus"
+                app:layout_constraintTop_toBottomOf="@+id/tvServiceStatus" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/include_loading" />
+
+</FrameLayout>

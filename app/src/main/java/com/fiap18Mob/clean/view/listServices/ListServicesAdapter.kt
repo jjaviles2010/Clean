@@ -35,7 +35,7 @@ class ListServicesAdapter(
 
         fun bindView(service: CleaningService,
                      clickListener: (CleaningService) -> Unit) = with(itemView) {
-            tvCleanerName.text = service.cleanerName
+            tvProfCleanerName.text = service.cleanerName
             tvScheduleTime.text = service.scheduledTime.toDateTime()
             tvStatus.text = ServiceStatus.valueOf(service.cleaningStatus).status
             setOnClickListener { clickListener(service) }

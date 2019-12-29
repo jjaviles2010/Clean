@@ -13,11 +13,12 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <!-- Allows the API to use the Global Positioning System (GPS) to determine the device's location to within a very small area. -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- Allows the API to use WiFi or mobile cell data (or both) to determine the device's location. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Allows the API to use WiFi or mobile cell data (or both) to determine the device's location. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <application
         android:name=".MyApplication"
@@ -28,7 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="ExtraText,GoogleAppIndexingWarning">
-
+        <activity android:name=".view.serviceDetail.ServiceDetailActivity"></activity>
         <!--
      The API key for Google Maps-based APIs is defined as a string resource.
      (See the file "res/values/google_maps_api.xml").
@@ -36,20 +37,21 @@
      You need a different API key for each encryption key, including the release key that is used to
      sign the APK for publishing.
      You can define the keys for the debug and release targets in src/debug/ and src/release/.
--->
+        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC_8aUSTE9MA_C6iNbjWkh4IH5e8ZTjEog" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".view.maps.MapsActivity" android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".view.usersList.UsersListViewActivity"></activity>
+        <activity
+            android:name=".view.maps.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".view.usersList.UsersListViewActivity" />
         <activity android:name=".view.cleanerDetail.CleanerDetailActivity" />
         <activity android:name=".view.forgotpassword.ForgotPasswordActivity" />
-        <activity android:name=".view.listServices.ListServicesActivity"></activity>
+        <activity android:name=".view.listServices.ListServicesActivity" />
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.about.AboutActivity" />
         <activity android:name=".view.signup.SignUpActivity" />

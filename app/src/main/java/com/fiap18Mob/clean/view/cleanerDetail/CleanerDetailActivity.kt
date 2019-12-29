@@ -2,7 +2,6 @@ package com.fiap18Mob.clean.view.cleanerDetail
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -38,16 +37,16 @@ class CleanerDetailActivity : BaseActivity() {
 
     private fun setValues() {
         user = intent.getParcelableExtra("USER")
-        tvNameValue.text = user.nome
-        tvPhoneNumValue.text = user.phoneNumber
-        tvHourValValue.text = user.hourValue.toString()
+        tvCleanerName.text = user.nome
+        tvCleanerPhoneNum.text = user.phoneNumber
+        tvCleanerHourVal.text = user.hourValue.toString()
         tvFullAddress.text = "${user.street} ${user.number}, ${user.complement}, ${user.neighborhood}, ${user.city}, ${user.uf}"
     }
 
     private fun setupButtonEvents() {
-        btnDatePicker.setOnClickListener { selectDate() }
+        btnServDatePicker.setOnClickListener { selectDate() }
         btnTimePicker.setOnClickListener { selectTime() }
-        btnScheduleService.setOnClickListener { scheduleService() }
+        btnUpdateService.setOnClickListener { scheduleService() }
     }
 
     private fun configureObservers() {
@@ -79,7 +78,7 @@ class CleanerDetailActivity : BaseActivity() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-            etScheduleDate.setText("$dayOfMonth/$monthOfYear/$year")
+            etServScheduleDate.setText("$dayOfMonth/$monthOfYear/$year")
         }, year, month, day)
 
         datePickerDialog.show()
@@ -91,7 +90,7 @@ class CleanerDetailActivity : BaseActivity() {
         val minute = calendar.get(Calendar.MINUTE);
 
         val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-            etCleaningTime.setText("$hourOfDay:$minute")
+            etCleanServiceTime.setText("$hourOfDay:$minute")
         }, hour, minute, false)
 
         timePickerDialog.show()
@@ -111,9 +110,9 @@ class CleanerDetailActivity : BaseActivity() {
     }
 
     private fun getScheduleDate() : Long {
-        val dateFields = etScheduleDate.text.split("/")
+        val dateFields = etServScheduleDate.text.split("/")
         val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        return dateFormat.parse("${dateFields[2]}-${dateFields[1]}-${dateFields[0]} ${etCleaningTime.text}:00").time
+        return dateFormat.parse("${dateFields[2]}-${dateFields[1]}-${dateFields[0]} ${etCleanServiceTime.text}:00").time
 
     }
 }

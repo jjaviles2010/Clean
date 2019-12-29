@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvCleanerName"
+        android:id="@+id/tvProfCleanerName"
         style="@style/custom_label_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCleanerName"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfCleanerName"
         tools:text="20/11/2010 9:30PM" />
 
     <TextView

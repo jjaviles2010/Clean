@@ -60,4 +60,9 @@
     <string name="tvCleaningTime">Hora da limpeza :</string>
     <string name="cleaningServiceScheduledMsg">Serviço de limpeza agendado!</string>
     <string name="title_activity_maps">Mapa</string>
+    <string name="btnUpdateService">Atualizar</string>
+    <string name="btnCancel">Cancelar</string>
+    <string name="tvProfessionalInfo">Informações do Profissional</string>
+    <string name="tvServiceInfo">Informações do Serviço</string>
+    <string name="tvServiceStatus">Status do Serviço :</string>
 </resources>

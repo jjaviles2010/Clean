@@ -34,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvProfessionalInfo" />
 
         <TextView
-            android:id="@+id/tvNameValue"
+            android:id="@+id/tvCleanerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -54,13 +54,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tvNameLbl" />
 
         <TextView
-            android:id="@+id/tvPhoneNumValue"
+            android:id="@+id/tvCleanerPhoneNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toEndOf="@+id/tvPhoneNumLbl"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameValue"
+            app:layout_constraintTop_toBottomOf="@+id/tvCleanerName"
             tools:text="(11) 97564-8763" />
 
         <TextView
@@ -74,13 +74,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumLbl" />
 
         <TextView
-            android:id="@+id/tvHourValValue"
+            android:id="@+id/tvCleanerHourVal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toEndOf="@+id/tvHourValLbl"
-            app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumValue"
+            app:layout_constraintTop_toBottomOf="@+id/tvCleanerPhoneNum"
             tools:text="150.45" />
 
         <TextView
@@ -103,7 +103,7 @@
             tools:text="Rua Inhambu 954, AP 35B, Vila Uberabinha, São Paulo, SP" />
 
         <EditText
-            android:id="@+id/etScheduleDate"
+            android:id="@+id/etServScheduleDate"
             style="@style/custom_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -124,19 +124,19 @@
             app:layout_constraintTop_toBottomOf="@+id/tvFullAddress" />
 
         <Button
-            android:id="@+id/btnDatePicker"
+            android:id="@+id/btnServDatePicker"
             style="@style/custom_button"
             android:layout_width="43dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
 
             android:background="@drawable/ic_date_range_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/etScheduleDate"
-            app:layout_constraintStart_toEndOf="@+id/etScheduleDate"
-            app:layout_constraintTop_toTopOf="@+id/etScheduleDate" />
+            app:layout_constraintBottom_toBottomOf="@+id/etServScheduleDate"
+            app:layout_constraintStart_toEndOf="@+id/etServScheduleDate"
+            app:layout_constraintTop_toTopOf="@+id/etServScheduleDate" />
 
         <Button
-            android:id="@+id/btnScheduleService"
+            android:id="@+id/btnUpdateService"
             style="@style/custom_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -145,18 +145,18 @@
             android:layout_marginEnd="24dp"
             android:text="@string/btnSchedule"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/etCleaningTime"
-            app:layout_constraintTop_toBottomOf="@+id/etCleaningTime" />
+            app:layout_constraintStart_toStartOf="@+id/etCleanServiceTime"
+            app:layout_constraintTop_toBottomOf="@+id/etCleanServiceTime" />
 
         <EditText
-            android:id="@+id/etCleaningTime"
+            android:id="@+id/etCleanServiceTime"
             style="@style/custom_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:inputType="time"
-            app:layout_constraintEnd_toEndOf="@+id/etScheduleDate"
+            app:layout_constraintEnd_toEndOf="@+id/etServScheduleDate"
             app:layout_constraintStart_toStartOf="@+id/tvCleaningTime"
             app:layout_constraintTop_toBottomOf="@+id/tvCleaningTime" />
 
@@ -168,9 +168,9 @@
             android:layout_marginStart="8dp"
 
             android:background="@drawable/ic_access_time_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/etCleaningTime"
-            app:layout_constraintStart_toEndOf="@+id/etCleaningTime"
-            app:layout_constraintTop_toTopOf="@+id/etCleaningTime" />
+            app:layout_constraintBottom_toBottomOf="@+id/etCleanServiceTime"
+            app:layout_constraintStart_toEndOf="@+id/etCleanServiceTime"
+            app:layout_constraintTop_toTopOf="@+id/etCleanServiceTime" />
 
         <TextView
             android:id="@+id/tvCleaningTime"
@@ -179,8 +179,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/tvCleaningTime"
-            app:layout_constraintStart_toStartOf="@+id/etScheduleDate"
-            app:layout_constraintTop_toBottomOf="@+id/etScheduleDate" />
+            app:layout_constraintStart_toStartOf="@+id/etServScheduleDate"
+            app:layout_constraintTop_toBottomOf="@+id/etServScheduleDate" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include layout="@layout/include_loading" />
