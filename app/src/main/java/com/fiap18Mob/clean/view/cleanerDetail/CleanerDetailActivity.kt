@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.CleaningService
+import com.fiap18Mob.clean.model.User
 import com.fiap18Mob.clean.utils.ServiceStatus
 import kotlinx.android.synthetic.main.activity_cleaner_detail.*
 import kotlinx.android.synthetic.main.include_loading.*
@@ -23,12 +24,24 @@ class CleanerDetailActivity : BaseActivity() {
     val cleanerDetailViewModel : CleanerDetailViewModel by viewModel()
     private val cleaningService : CleaningService by inject()
 
+    lateinit var user: User
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cleaner_detail)
 
+        setValues()
+
         setupButtonEvents()
         configureObservers()
+    }
+
+    private fun setValues() {
+        user = intent.getParcelableExtra("USER")
+        tvNameValue.text = user.nome
+        tvPhoneNumValue.text = user.phoneNumber
+        tvHourValValue.text = user.hourValue.toString()
+        tvFullAddress.text = "${user.street} ${user.number}, ${user.complement}, ${user.neighborhood}, ${user.city}, ${user.uf}"
     }
 
     private fun setupButtonEvents() {
@@ -91,8 +104,8 @@ class CleanerDetailActivity : BaseActivity() {
     }
 
     private fun populateServiceInfo() {
-        cleaningService.cleanerName = "Carla Peres"
-        cleaningService.cleanerCPF = "32424523242"
+        cleaningService.cleanerName = user.nome
+        cleaningService.cleanerCPF = user.cpf
         cleaningService.cleaningStatus = ServiceStatus.OPENED.status
         cleaningService.scheduledTime = getScheduleDate()
     }
