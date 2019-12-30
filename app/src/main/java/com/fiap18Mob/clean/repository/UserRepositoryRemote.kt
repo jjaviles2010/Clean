@@ -120,4 +120,26 @@ class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
             })
     }
 
+    fun getCleanerByCpf(cpf: String, onComplete: (User?) -> Unit, onError: (Throwable?) -> Unit) {
+
+        var userResult: User = User()
+
+        firebaseDB.getReference(firebaseReferenceUserNode)
+            .orderByChild("cpf")
+            .equalTo(cpf)
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+                    onError(Throwable("Erro ao carregar dados da diarista"))
+                }
+
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for (dataSnapshot in dataSnapshot?.getChildren()) {
+                        userResult = dataSnapshot.getValue(User::class.java)!!
+                    }
+
+                    onComplete(userResult)
+                }
+            })
+    }
+
 }
