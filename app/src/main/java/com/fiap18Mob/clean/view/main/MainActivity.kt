@@ -55,6 +55,10 @@ class MainActivity : BaseActivity(), GoogleApiClient.ConnectionCallbacks, Google
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
 
+        btSearch.setOnClickListener {
+            startActivity(Intent(this@MainActivity, UsersListViewActivity::class.java))
+        }
+
         btSchedules.setOnClickListener {
             val intent = Intent(this@MainActivity, ListServicesActivity::class.java)
             startActivity(intent)
