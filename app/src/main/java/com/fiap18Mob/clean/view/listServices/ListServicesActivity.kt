@@ -46,6 +46,7 @@ class ListServicesActivity : BaseActivity() {
                 val serviceDetailActivity = Intent(this, ServiceDetailActivity::class.java)
                 serviceDetailActivity.putExtra("SERVICE", it)
                 startActivity(serviceDetailActivity)
+                finish()
             }
 
             rvListServices.layoutManager = LinearLayoutManager(this)
