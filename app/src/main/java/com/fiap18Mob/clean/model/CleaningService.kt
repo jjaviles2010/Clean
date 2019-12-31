@@ -5,6 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class CleaningService (
+    var id: String = "",
     var cleanerCPF: String = "",
     var cleanerName: String = "",
     var cleaningStatus: String = "",

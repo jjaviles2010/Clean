@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.activity_service_detail.*
 import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.Calendar
+import java.text.SimpleDateFormat
+
 
 class ServiceDetailActivity : BaseActivity() {
 
@@ -57,7 +59,7 @@ class ServiceDetailActivity : BaseActivity() {
     private fun setupButtonEvents() {
         btnServDatePicker.setOnClickListener { selectDate() }
         btnTimePicker.setOnClickListener { selectTime() }
-        //btnUpdateService.setOnClickListener { scheduleService() }
+        btnUpdateService.setOnClickListener { updateService() }
     }
 
     private fun configureObservers() {
@@ -79,6 +81,13 @@ class ServiceDetailActivity : BaseActivity() {
             tvCleanerPhoneNum.text = cleanerInfo.phoneNumber
             tvCleanerHourVal.text = cleanerInfo.hourValue.toString()
 
+        })
+
+        serviceDetailViewModel.cleaningServiceUpdated.observe(this, Observer {
+            if (it == true) {
+                Toast.makeText(this, getString(R.string.msgCleaningServUpdated), Toast.LENGTH_SHORT).show()
+                finish()
+            }
         })
     }
 
@@ -110,6 +119,24 @@ class ServiceDetailActivity : BaseActivity() {
         }, hour, minute, false)
 
         timePickerDialog.show()
+    }
+
+
+    fun updateService() {
+        populateServiceInfo()
+        serviceDetailViewModel.isLoading.value = true
+        serviceDetailViewModel.updateCleaningService(cleaningService)
+    }
+
+    private fun populateServiceInfo() {
+        cleaningService.cleaningStatus = spServiceStatus.selectedItem.toString()
+        cleaningService.scheduledTime = getScheduleDate()
+    }
+
+    private fun getScheduleDate() : Long {
+        val dateFields = etServScheduleDate.text.split("/")
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        return dateFormat.parse("${dateFields[2]}-${dateFields[1]}-${dateFields[0]} ${etCleanServiceTime.text}:00").time
     }
 
 }

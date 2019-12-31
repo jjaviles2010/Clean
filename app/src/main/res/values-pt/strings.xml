@@ -65,4 +65,5 @@
     <string name="tvProfessionalInfo">Informações do Profissional</string>
     <string name="tvServiceInfo">Informações do Serviço</string>
     <string name="tvServiceStatus">Status do Serviço :</string>
+    <string name="msgCleaningServUpdated">Serviço de limpeza atualizado!</string>
 </resources>

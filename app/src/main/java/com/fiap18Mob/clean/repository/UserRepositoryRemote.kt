@@ -98,11 +98,27 @@ class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
             }
     }
 
+    fun updateCleaningService(
+        cleaningService: CleaningService, onComplete: (Boolean?) -> Unit,
+        onError: (Throwable?) -> Unit
+    ) {
+        firebaseDB.getReference("$firebaseReferenceUserNode/${firebaseAuth.currentUser?.uid}/$firebaseReferenceCleaningServiceNode/${cleaningService.id}")
+            .setValue(cleaningService)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    onComplete(true)
+                } else {
+                    onError(it.exception)
+                }
+            }
+    }
+
     fun getCleaningServices(
         onComplete: (List<CleaningService>?) -> Unit,
         onError: (Throwable?) -> Unit
     ) {
         var servicesResult: MutableList<CleaningService> = mutableListOf()
+        var service: CleaningService = CleaningService()
 
         firebaseDB.getReference("$firebaseReferenceUserNode/${firebaseAuth.currentUser?.uid}/$firebaseReferenceCleaningServiceNode")
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -112,8 +128,9 @@ class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     for (dataSnapshot in dataSnapshot?.getChildren()) {
-
-                        servicesResult.add(dataSnapshot.getValue(CleaningService::class.java)!!)
+                        service = dataSnapshot.getValue(CleaningService::class.java)!!
+                        service.id = dataSnapshot.key ?: ""
+                        servicesResult.add(service)
                     }
                     onComplete(servicesResult)
                 }
