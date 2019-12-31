@@ -46,6 +46,7 @@ class UsersListViewActivity : AppCompatActivity() {
                 val cleanerDetailActivity = Intent(this, CleanerDetailActivity::class.java)
                 cleanerDetailActivity.putExtra("USER", it)
                 startActivity(cleanerDetailActivity)
+                finish()
             }
 
             recyclerView_Main.layoutManager = LinearLayoutManager(this)

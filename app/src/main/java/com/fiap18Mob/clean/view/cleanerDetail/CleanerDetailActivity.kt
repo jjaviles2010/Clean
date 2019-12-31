@@ -90,7 +90,7 @@ class CleanerDetailActivity : BaseActivity() {
         val minute = calendar.get(Calendar.MINUTE);
 
         val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-            etCleanServiceTime.setText("$hourOfDay:$minute")
+            etCleanServiceTime.setText(getTimeToShow(hourOfDay,minute))
         }, hour, minute, false)
 
         timePickerDialog.show()
@@ -112,7 +112,24 @@ class CleanerDetailActivity : BaseActivity() {
     private fun getScheduleDate() : Long {
         val dateFields = etServScheduleDate.text.split("/")
         val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        return dateFormat.parse("${dateFields[2]}-${dateFields[1]}-${dateFields[0]} ${etCleanServiceTime.text}:00").time
+        return dateFormat.parse("${dateFields[2]}-${dateFields[1]}-${dateFields[0]} ${populateTime(etCleanServiceTime.text.toString())}:00").time
 
+    }
+
+    private fun getTimeToShow(hourOfDay: Int, minute: Int) : String {
+        var hourText: String
+        var minuteText: String
+
+        hourText = if (hourOfDay < 10) "0$hourOfDay" else "$hourOfDay"
+        minuteText = if (minute < 10) "0$minute" else "$minute"
+
+        return "$hourText:$minuteText"
+    }
+
+    private fun populateTime(timeInText: String) : String {
+        val hour = timeInText.split(':')[0].toInt()
+        val minute = timeInText.split(':')[1].toInt()
+
+        return "$hour:$minute"
     }
 }
