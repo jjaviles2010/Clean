@@ -41,7 +41,7 @@ class ServiceDetailActivity : BaseActivity() {
         tvProfessionalName.text = cleaningService.cleanerName
         etServScheduleDate.setText(cleaningService.scheduledTime.toDateTime().split(" ")[0])
         etCleanServiceTime.setText(cleaningService.scheduledTime.toDateTime().split(" ")[1])
-        val statusToSelect = resources.getStringArray(R.array.statesList).indexOf(cleaningService.cleaningStatus)
+        val statusToSelect = resources.getStringArray(R.array.statusList).indexOf(cleaningService.cleaningStatus)
         spServiceStatus.setSelection(statusToSelect)
     }
 
