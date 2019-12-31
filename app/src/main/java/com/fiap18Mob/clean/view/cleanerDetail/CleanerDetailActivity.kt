@@ -78,7 +78,7 @@ class CleanerDetailActivity : BaseActivity() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-            etServScheduleDate.setText("$dayOfMonth/$monthOfYear/$year")
+            etServScheduleDate.setText("$dayOfMonth/${monthOfYear+1}/$year")
         }, year, month, day)
 
         datePickerDialog.show()
