@@ -13,15 +13,25 @@
         <TextView
             android:id="@+id/tvProfessionalInfo"
             style="@style/custom_label_bold"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="24dp"
             android:text="@string/tvProfessional_info"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnShareCleanerInfo"
+            style="@style/custom_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_share_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvProfessionalInfo"
+            app:layout_constraintStart_toEndOf="@+id/tvProfessionalInfo"
+            app:layout_constraintTop_toTopOf="@+id/tvProfessionalInfo" />
 
         <TextView
             android:id="@+id/tvNameLbl"
@@ -62,6 +72,18 @@
             app:layout_constraintStart_toEndOf="@+id/tvPhoneNumLbl"
             app:layout_constraintTop_toBottomOf="@+id/tvCleanerName"
             tools:text="(11) 97564-8763" />
+
+        <Button
+            android:id="@+id/btnCallCleaner"
+            style="@style/custom_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+
+            android:background="@drawable/ic_call_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCleanerPhoneNum"
+            app:layout_constraintStart_toEndOf="@+id/tvCleanerPhoneNum"
+            app:layout_constraintTop_toTopOf="@+id/tvCleanerPhoneNum" />
 
         <TextView
             android:id="@+id/tvHourValLbl"

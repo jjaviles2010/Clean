@@ -1,15 +1,21 @@
 package com.fiap18Mob.clean.view.cleanerDetail
 
+import android.Manifest
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.CleaningService
 import com.fiap18Mob.clean.model.User
+import com.fiap18Mob.clean.utils.PermissionUtils
 import com.fiap18Mob.clean.utils.ServiceStatus
 import kotlinx.android.synthetic.main.activity_cleaner_detail.*
 import kotlinx.android.synthetic.main.include_loading.*
@@ -20,8 +26,8 @@ import java.util.Calendar
 
 class CleanerDetailActivity : BaseActivity() {
 
-    val cleanerDetailViewModel : CleanerDetailViewModel by viewModel()
-    private val cleaningService : CleaningService by inject()
+    val cleanerDetailViewModel: CleanerDetailViewModel by viewModel()
+    private val cleaningService: CleaningService by inject()
 
     lateinit var user: User
 
@@ -40,13 +46,15 @@ class CleanerDetailActivity : BaseActivity() {
         tvCleanerName.text = user.nome
         tvCleanerPhoneNum.text = user.phoneNumber
         tvCleanerHourVal.text = user.hourValue.toString()
-        tvFullAddress.text = "${user.street} ${user.number}, ${user.complement}, ${user.neighborhood}, ${user.city}, ${user.uf}"
+        tvFullAddress.text =
+            "${user.street} ${user.number}, ${user.complement}, ${user.neighborhood}, ${user.city}, ${user.uf}"
     }
 
     private fun setupButtonEvents() {
         btnServDatePicker.setOnClickListener { selectDate() }
         btnTimePicker.setOnClickListener { selectTime() }
         btnUpdateService.setOnClickListener { scheduleService() }
+        btnCallCleaner.setOnClickListener { startCallProcess() }
     }
 
     private fun configureObservers() {
@@ -65,7 +73,11 @@ class CleanerDetailActivity : BaseActivity() {
 
         cleanerDetailViewModel.cleaningServiceScheduled.observe(this, Observer {
             if (it == true) {
-                Toast.makeText(this, getString(R.string.cleaningServiceScheduledMsg), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    getString(R.string.cleaningServiceScheduledMsg),
+                    Toast.LENGTH_SHORT
+                ).show()
                 finish()
             }
         })
@@ -77,9 +89,15 @@ class CleanerDetailActivity : BaseActivity() {
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-            etServScheduleDate.setText("$dayOfMonth/${monthOfYear+1}/$year")
-        }, year, month, day)
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                etServScheduleDate.setText("$dayOfMonth/${monthOfYear + 1}/$year")
+            },
+            year,
+            month,
+            day
+        )
 
         datePickerDialog.show()
     }
@@ -89,9 +107,10 @@ class CleanerDetailActivity : BaseActivity() {
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE);
 
-        val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-            etCleanServiceTime.setText(getTimeToShow(hourOfDay,minute))
-        }, hour, minute, false)
+        val timePickerDialog =
+            TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                etCleanServiceTime.setText(getTimeToShow(hourOfDay, minute))
+            }, hour, minute, false)
 
         timePickerDialog.show()
     }
@@ -109,14 +128,18 @@ class CleanerDetailActivity : BaseActivity() {
         cleaningService.scheduledTime = getScheduleDate()
     }
 
-    private fun getScheduleDate() : Long {
+    private fun getScheduleDate(): Long {
         val dateFields = etServScheduleDate.text.split("/")
         val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        return dateFormat.parse("${dateFields[2]}-${dateFields[1]}-${dateFields[0]} ${populateTime(etCleanServiceTime.text.toString())}:00").time
+        return dateFormat.parse(
+            "${dateFields[2]}-${dateFields[1]}-${dateFields[0]} ${populateTime(
+                etCleanServiceTime.text.toString()
+            )}:00"
+        ).time
 
     }
 
-    private fun getTimeToShow(hourOfDay: Int, minute: Int) : String {
+    private fun getTimeToShow(hourOfDay: Int, minute: Int): String {
         var hourText: String
         var minuteText: String
 
@@ -126,10 +149,61 @@ class CleanerDetailActivity : BaseActivity() {
         return "$hourText:$minuteText"
     }
 
-    private fun populateTime(timeInText: String) : String {
+    private fun populateTime(timeInText: String): String {
         val hour = timeInText.split(':')[0].toInt()
         val minute = timeInText.split(':')[1].toInt()
 
         return "$hour:$minute"
+    }
+
+
+    private fun startCallProcess() {
+        checkPermissions()
+    }
+
+    private fun checkPermissions() {
+        if (PermissionUtils.validate(
+                this, 0,
+                Manifest.permission.CALL_PHONE
+            )
+        ) {
+            callCleaner()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        for (result in grantResults) {
+            if (result == PackageManager.PERMISSION_DENIED) {
+                alertAndFinish()
+                return
+            } else {
+                callCleaner()
+            }
+        }
+    }
+
+    private fun alertAndFinish() {
+        run {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.app_name)
+                .setMessage("Para utilizar este aplicativo, você precisa aceitar as permissões.")
+            // Add the buttons
+            builder.setPositiveButton("OK") { dialog, id -> finish() }
+            val dialog = builder.create()
+            dialog.show()
+        }
+    }
+
+    private fun callCleaner() {
+        val callIntent =
+            Intent(Intent.ACTION_CALL, Uri.parse("tel:${user.phoneNumber}")).apply {
+                startActivity(this)
+            }
     }
 }
