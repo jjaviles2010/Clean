@@ -2,17 +2,14 @@ package com.fiap18Mob.clean.view.signup
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.Visibility
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
+import com.fiap18mob.mylib.CustomToast
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.User
-import com.fiap18Mob.clean.repository.UserRepository
 import com.fiap18Mob.clean.utils.Mask
 import com.fiap18Mob.clean.utils.isValidEmail
 import com.fiap18Mob.clean.utils.validate
@@ -25,6 +22,7 @@ class SignUpActivity : BaseActivity() {
 
     val signUpViewModel: SignUpViewModel by viewModel()
     private val user: User by inject()
+    private val customToast: CustomToast by inject()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,7 +107,7 @@ class SignUpActivity : BaseActivity() {
 
         signUpViewModel.messageError.observe(this, Observer {
             if (it != "")
-                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                customToast.showToast(this, it, CustomToast.ERROR)
         })
 
         signUpViewModel.address.observe(this, Observer {
@@ -157,7 +155,7 @@ class SignUpActivity : BaseActivity() {
             if (it == true) {
                 populateGeoInfo()
             } else {
-                Toast.makeText(this, getString(R.string.errorCreatingUserMsg), Toast.LENGTH_LONG).show()
+                customToast.showToast(this, getString(R.string.errorCreatingUserMsg), CustomToast.ERROR)
             }
         })
 
@@ -168,8 +166,7 @@ class SignUpActivity : BaseActivity() {
                 setResult(Activity.RESULT_OK, resultIntent)
                 finish()
             } else {
-                Toast.makeText(this, getString(R.string.errorCreatingUserMsg), Toast.LENGTH_LONG)
-                    .show()
+                customToast.showToast(this, getString(R.string.errorCreatingUserMsg), CustomToast.ERROR)
             }
         })
     }

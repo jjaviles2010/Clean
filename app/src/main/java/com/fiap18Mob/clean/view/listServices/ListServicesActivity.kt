@@ -1,24 +1,23 @@
 package com.fiap18Mob.clean.view.listServices
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
-import com.fiap18Mob.clean.view.cleanerDetail.CleanerDetailActivity
 import com.fiap18Mob.clean.view.serviceDetail.ServiceDetailActivity
+import com.fiap18mob.mylib.CustomToast
 import kotlinx.android.synthetic.main.activity_list_services.*
 import kotlinx.android.synthetic.main.include_loading.*
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ListServicesActivity : BaseActivity() {
 
     val listServicesViewModel: ListServicesViewModel by viewModel()
+    val customToast: CustomToast by inject()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +35,7 @@ class ListServicesActivity : BaseActivity() {
 
         listServicesViewModel.messageError.observe(this, Observer {
             if(it != "") {
-                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                customToast.showToast(this, it, CustomToast.ERROR)
             }
         })
         listServicesViewModel.services.observe(this, Observer {

@@ -5,15 +5,16 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.fiap18Mob.clean.BaseActivity
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.CleaningService
 import com.fiap18Mob.clean.model.User
 import com.fiap18Mob.clean.utils.toDateTime
+import com.fiap18mob.mylib.CustomToast
 import kotlinx.android.synthetic.main.activity_service_detail.*
 import kotlinx.android.synthetic.main.include_loading.*
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.Calendar
 import java.text.SimpleDateFormat
@@ -22,6 +23,7 @@ import java.text.SimpleDateFormat
 class ServiceDetailActivity : BaseActivity() {
 
     val serviceDetailViewModel : ServiceDetailViewModel by viewModel()
+    val customToast: CustomToast by inject()
     lateinit var cleaningService : CleaningService
     lateinit var cleanerInfo : User
 
@@ -73,7 +75,7 @@ class ServiceDetailActivity : BaseActivity() {
 
         serviceDetailViewModel.messageError.observe(this, Observer {
             if (it != "")
-                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                customToast.showToast(this, it, CustomToast.ERROR)
         })
 
         serviceDetailViewModel.cleanerInfo.observe(this, Observer {
@@ -85,7 +87,7 @@ class ServiceDetailActivity : BaseActivity() {
 
         serviceDetailViewModel.cleaningServiceUpdated.observe(this, Observer {
             if (it == true) {
-                Toast.makeText(this, getString(R.string.msgCleaningServUpdated), Toast.LENGTH_SHORT).show()
+                customToast.showToast(this, getString(R.string.msgCleaningServUpdated), CustomToast.SUCCESS)
                 finish()
             }
         })

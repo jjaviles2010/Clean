@@ -15,6 +15,7 @@ import com.fiap18Mob.clean.view.login.LoginViewModel
 import com.fiap18Mob.clean.view.serviceDetail.ServiceDetailViewModel
 import com.fiap18Mob.clean.view.signup.SignUpViewModel
 import com.fiap18Mob.clean.view.usersList.UsersListViewModel
+import com.fiap18mob.mylib.CustomToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.iid.FirebaseInstanceId
@@ -37,6 +38,7 @@ val viewModelModule = module {
 val uiModule = module {
     factory { User() }
     factory { CleaningService() }
+    factory { CustomToast() }
 }
 
 val repositoryModule = module {

@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.BaseActivity
@@ -17,6 +16,7 @@ import com.fiap18Mob.clean.model.CleaningService
 import com.fiap18Mob.clean.model.User
 import com.fiap18Mob.clean.utils.PermissionUtils
 import com.fiap18Mob.clean.utils.ServiceStatus
+import com.fiap18mob.mylib.CustomToast
 import kotlinx.android.synthetic.main.activity_cleaner_detail.*
 import kotlinx.android.synthetic.main.include_loading.*
 import org.koin.android.ext.android.inject
@@ -28,6 +28,7 @@ class CleanerDetailActivity : BaseActivity() {
 
     val cleanerDetailViewModel: CleanerDetailViewModel by viewModel()
     private val cleaningService: CleaningService by inject()
+    val customToast: CustomToast by inject()
 
     lateinit var user: User
 
@@ -69,16 +70,12 @@ class CleanerDetailActivity : BaseActivity() {
 
         cleanerDetailViewModel.messageError.observe(this, Observer {
             if (it != "")
-                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                customToast.showToast(this, it, CustomToast.ERROR)
         })
 
         cleanerDetailViewModel.cleaningServiceScheduled.observe(this, Observer {
             if (it == true) {
-                Toast.makeText(
-                    this,
-                    getString(R.string.cleaningServiceScheduledMsg),
-                    Toast.LENGTH_SHORT
-                ).show()
+                customToast.showToast(this, getString(R.string.cleaningServiceScheduledMsg), CustomToast.SUCCESS)
                 finish()
             }
         })
