@@ -55,6 +55,7 @@ class CleanerDetailActivity : BaseActivity() {
         btnTimePicker.setOnClickListener { selectTime() }
         btnUpdateService.setOnClickListener { scheduleService() }
         btnCallCleaner.setOnClickListener { startCallProcess() }
+        btnShareCleanerInfo.setOnClickListener { shareCleanerInfo() }
     }
 
     private fun configureObservers() {
@@ -205,5 +206,17 @@ class CleanerDetailActivity : BaseActivity() {
             Intent(Intent.ACTION_CALL, Uri.parse("tel:${user.phoneNumber}")).apply {
                 startActivity(this)
             }
+    }
+
+    private fun shareCleanerInfo() {
+        val shareInfoIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "${user.nome}, tel:${user.phoneNumber}, val:${user.hourValue}")
+            type = "text/plain"
+        }
+
+        if (shareInfoIntent.resolveActivity(packageManager) != null) {
+            startActivity(shareInfoIntent)
+        }
     }
 }
