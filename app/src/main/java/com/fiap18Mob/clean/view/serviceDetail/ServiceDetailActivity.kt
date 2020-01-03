@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.CleaningService
 import com.fiap18Mob.clean.model.User
+import com.fiap18Mob.clean.utils.Status
 import com.fiap18Mob.clean.utils.toDateTime
 import com.fiap18mob.mylib.CustomToast
 import kotlinx.android.synthetic.main.activity_service_detail.*
@@ -43,7 +44,7 @@ class ServiceDetailActivity : BaseActivity() {
         tvProfessionalName.text = cleaningService.cleanerName
         etServScheduleDate.setText(cleaningService.scheduledTime.toDateTime().split(" ")[0])
         etCleanServiceTime.setText(cleaningService.scheduledTime.toDateTime().split(" ")[1])
-        val statusToSelect = resources.getStringArray(R.array.statusList).indexOf(cleaningService.cleaningStatus)
+        val statusToSelect = resources.getStringArray(R.array.statusList).indexOf(Status.translateStatus(cleaningService.cleaningStatus))
         spServiceStatus.setSelection(statusToSelect)
     }
 
@@ -131,7 +132,7 @@ class ServiceDetailActivity : BaseActivity() {
     }
 
     private fun populateServiceInfo() {
-        cleaningService.cleaningStatus = spServiceStatus.selectedItem.toString()
+        cleaningService.cleaningStatus = Status.translateToEnglish(spServiceStatus.selectedItem.toString())
         cleaningService.scheduledTime = getScheduleDate()
     }
 

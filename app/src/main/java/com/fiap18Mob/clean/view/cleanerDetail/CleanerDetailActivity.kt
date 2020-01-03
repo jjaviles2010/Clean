@@ -15,7 +15,7 @@ import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.CleaningService
 import com.fiap18Mob.clean.model.User
 import com.fiap18Mob.clean.utils.PermissionUtils
-import com.fiap18Mob.clean.utils.ServiceStatus
+import com.fiap18Mob.clean.utils.Status
 import com.fiap18mob.mylib.CustomToast
 import kotlinx.android.synthetic.main.activity_cleaner_detail.*
 import kotlinx.android.synthetic.main.include_loading.*
@@ -122,7 +122,7 @@ class CleanerDetailActivity : BaseActivity() {
     private fun populateServiceInfo() {
         cleaningService.cleanerName = user.nome
         cleaningService.cleanerCPF = user.cpf
-        cleaningService.cleaningStatus = ServiceStatus.OPENED.status
+        cleaningService.cleaningStatus = Status.ServiceStatus.OPENED.status
         cleaningService.scheduledTime = getScheduleDate()
     }
 

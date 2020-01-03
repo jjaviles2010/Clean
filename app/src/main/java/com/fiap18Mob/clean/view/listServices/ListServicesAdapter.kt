@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.model.CleaningService
-import com.fiap18Mob.clean.utils.ServiceStatus
+import com.fiap18Mob.clean.utils.Status
 import com.fiap18Mob.clean.utils.toDateTime
 import kotlinx.android.synthetic.main.activity_cleaner_detail.view.*
 import kotlinx.android.synthetic.main.services_list_item.view.*
@@ -37,7 +37,7 @@ class ListServicesAdapter(
                      clickListener: (CleaningService) -> Unit) = with(itemView) {
             tvProfCleanerName.text = service.cleanerName
             tvScheduleTime.text = service.scheduledTime.toDateTime()
-            tvStatus.text = ServiceStatus.valueOf(service.cleaningStatus).status
+            tvStatus.text = Status.translateStatus(service.cleaningStatus)
             setOnClickListener { clickListener(service) }
         }
     }

@@ -66,4 +66,7 @@
     <string name="tvServiceInfo">Service\'s Info</string>
     <string name="tvServiceStatus">Service Status :</string>
     <string name="msgCleaningServUpdated">Cleaning Service Updated!</string>
+    <string name="OPENED">OPENED</string>
+    <string name="CANCELED">CANCELED</string>
+    <string name="DONE">DONE</string>
 </resources>
