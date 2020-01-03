@@ -81,7 +81,7 @@
             <EditText
                 android:id="@+id/etZipCode"
                 style="@style/custom_edittext"
-                android:layout_width="358dp"
+                android:layout_width="0dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:hint="@string/etZipCodeHint"
@@ -108,25 +108,29 @@
             <EditText
                 android:id="@+id/etNumber"
                 style="@style/custom_edittext"
-                android:layout_width="170dp"
+                android:layout_width="0dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:hint="@string/etNumberHint"
                 android:inputType="number"
                 android:maxLength="6"
+                app:layout_constraintEnd_toStartOf="@+id/etAddressComp"
                 app:layout_constraintStart_toStartOf="@+id/etStreetAddress"
                 app:layout_constraintTop_toBottomOf="@+id/etStreetAddress" />
 
             <EditText
                 android:id="@+id/etAddressComp"
                 style="@style/custom_edittext"
-                android:layout_width="170dp"
+                android:layout_width="0dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:hint="@string/etAddressCoplementHint"
                 android:inputType="textPersonName"
                 android:maxLength="10"
                 app:layout_constraintEnd_toEndOf="@+id/etStreetAddress"
+                app:layout_constraintStart_toEndOf="@+id/etNumber"
                 app:layout_constraintTop_toBottomOf="@+id/etStreetAddress" />
 
             <EditText
@@ -146,13 +150,15 @@
             <EditText
                 android:id="@+id/etCity"
                 style="@style/custom_edittext"
-                android:layout_width="270dp"
-                android:layout_height="38dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:hint="@string/etCityHint"
                 android:inputType="textPersonName"
                 android:maxLength="15"
+                app:layout_constraintEnd_toStartOf="@+id/spStates"
                 app:layout_constraintStart_toStartOf="@+id/etNeighborhood"
                 app:layout_constraintTop_toBottomOf="@+id/etNeighborhood" />
 
