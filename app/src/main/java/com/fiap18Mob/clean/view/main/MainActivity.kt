@@ -69,6 +69,11 @@ class MainActivity : BaseActivity(), GoogleApiClient.ConnectionCallbacks, Google
             startActivity(intent)
         }
 
+        btViewAbout.setOnClickListener{
+            val intent = Intent(this@MainActivity, AboutActivity::class.java)
+            startActivity(intent)
+        }
+
         fun showAbout(view: View) {
             startActivity(Intent(this@MainActivity, AboutActivity::class.java))
         }

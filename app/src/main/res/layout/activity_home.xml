@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
+        android:layout_width="392dp"
+        android:layout_height="112dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
@@ -18,35 +19,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/clean_logo_basico" />
+
     <Button
-            style="@style/custom_button"
-            android:text="@string/btMySchedules"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btSchedules"
-            android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/btSearch"
-            app:layout_constraintBottom_toTopOf="@+id/btViewMap"
-            app:layout_constraintEnd_toEndOf="@+id/btSearch" app:layout_constraintStart_toStartOf="@+id/btSearch"/>
+        android:id="@+id/btSearch"
+        style="@style/custom_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/btSearchDiarist"
+        app:layout_constraintBottom_toTopOf="@+id/btSchedules"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline3"
+        app:layout_constraintVertical_bias="0.32999998"
+        app:layout_constraintVertical_chainStyle="packed" />
+
     <Button
-            style="@style/custom_button"
-            android:text="@string/btViewMap"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btViewMap"
-            android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/btSchedules"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toEndOf="@+id/btSchedules" app:layout_constraintStart_toStartOf="@+id/btSchedules"/>
+        android:id="@+id/btSchedules"
+        style="@style/custom_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/btMySchedules"
+        app:layout_constraintBottom_toTopOf="@+id/btViewMap"
+        app:layout_constraintEnd_toEndOf="@+id/btSearch"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btSearch"
+        app:layout_constraintTop_toBottomOf="@+id/btSearch" />
+
     <Button
-            style="@style/custom_button"
-            android:text="@string/btSearchDiarist"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btSearch"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="32dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="32dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/guideline3" app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintBottom_toTopOf="@+id/btSchedules" app:layout_constraintVertical_chainStyle="packed"/>
+        android:id="@+id/btViewMap"
+        style="@style/custom_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/btViewMap"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="@+id/btSchedules"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btSchedules"
+        app:layout_constraintTop_toBottomOf="@+id/btSchedules" />
+
+    <Button
+        android:id="@+id/btViewAbout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/btAbout"
+        android:textColor="#F8F8F8"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="@+id/btViewMap"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btViewMap"
+        app:layout_constraintTop_toBottomOf="@+id/btViewMap"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
             android:gravity="center"
         android:textColor="#673AB7"
@@ -70,4 +103,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="197dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

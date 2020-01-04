@@ -69,4 +69,5 @@
     <string name="OPENED">ABERTO</string>
     <string name="CANCELED">CANCELADO</string>
     <string name="DONE">FEITO</string>
+    <string name="btAbout">Sobre</string>
 </resources>
