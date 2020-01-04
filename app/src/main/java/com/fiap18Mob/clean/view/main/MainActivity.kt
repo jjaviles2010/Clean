@@ -25,19 +25,25 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_home.*
 
-class MainActivity : BaseActivity(), GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+class MainActivity : BaseActivity(), GoogleApiClient.ConnectionCallbacks,
+    GoogleApiClient.OnConnectionFailedListener {
 
     var timeMillisId: Long = 0
 
     private var mGoogleApiClient: GoogleApiClient? = null
 
+    private lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        mAuth = FirebaseAuth.getInstance()
 
         // Configura o objeto GoogleApiClient
         mGoogleApiClient = GoogleApiClient.Builder(this)
@@ -69,7 +75,7 @@ class MainActivity : BaseActivity(), GoogleApiClient.ConnectionCallbacks, Google
             startActivity(intent)
         }
 
-        btViewAbout.setOnClickListener{
+        btViewAbout.setOnClickListener {
             val intent = Intent(this@MainActivity, AboutActivity::class.java)
             startActivity(intent)
         }
@@ -109,98 +115,105 @@ class MainActivity : BaseActivity(), GoogleApiClient.ConnectionCallbacks, Google
         }
 
 
-
-    // Listener para monitorar o GPS
-    val locationCallback = object : com.google.android.gms.location.LocationCallback() {
-        override fun onLocationResult(locationResult: LocationResult) {
-            val location = locationResult.lastLocation
-            // Nova localizaçao: atualiza a interface
-            setMapLocation(location)
+        // Listener para monitorar o GPS
+        val locationCallback = object : com.google.android.gms.location.LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                val location = locationResult.lastLocation
+                // Nova localizaçao: atualiza a interface
+                setMapLocation(location)
+            }
         }
     }
-}
-        override fun onStart() {
-            super.onStart()
-            // Conecta no Google Play Services
-            mGoogleApiClient?.connect()
-        }
 
-        override fun onStop() {
-            // Para o GPS
-            stopLocationUpdates()
-            // Desconecta
-            mGoogleApiClient?.disconnect()
-            super.onStop()
-        }
+    override fun onStart() {
+        super.onStart()
+        // Conecta no Google Play Services
+        mGoogleApiClient?.connect()
+    }
 
-        override fun onConnected(bundle: Bundle?) {
-            // Inicia o GPS
-            startLocationUpdates()
-        }
+    override fun onStop() {
+        // Para o GPS
+        stopLocationUpdates()
+        // Desconecta
+        mGoogleApiClient?.disconnect()
+        super.onStop()
+    }
 
-        @SuppressLint("MissingPermission")
-        fun startLocationUpdates() {
-            Log.d(TAG, "startLocationUpdates()")
-            val locRequest = LocationRequest.create()
-            locRequest.interval = 10000
-            locRequest.fastestInterval = 5000
-            locRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+    override fun onConnected(bundle: Bundle?) {
+        // Inicia o GPS
+        startLocationUpdates()
+    }
 
-            //val locClient = LocationServices.getFusedLocationProviderClient(this)
-            //locClient.requestLocationUpdates(locRequest, locationCallback, Looper.myLooper())
-        }
+    @SuppressLint("MissingPermission")
+    fun startLocationUpdates() {
+        Log.d(TAG, "startLocationUpdates()")
+        val locRequest = LocationRequest.create()
+        locRequest.interval = 10000
+        locRequest.fastestInterval = 5000
+        locRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 
-        fun stopLocationUpdates() {
-            Log.d(TAG, "stopLocationUpdates()")
-            //val locClient = LocationServices.getFusedLocationProviderClient(this)
-            //locClient.removeLocationUpdates(locationCallback)
-        }
+        //val locClient = LocationServices.getFusedLocationProviderClient(this)
+        //locClient.requestLocationUpdates(locRequest, locationCallback, Looper.myLooper())
+    }
 
-        //### listener for disconnect
-        override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    fun stopLocationUpdates() {
+        Log.d(TAG, "stopLocationUpdates()")
+        //val locClient = LocationServices.getFusedLocationProviderClient(this)
+        //locClient.removeLocationUpdates(locationCallback)
+    }
 
-            for (result in grantResults) {
-                if (result == PackageManager.PERMISSION_DENIED) {
-                    // Alguma permissão foi negada, agora é com você :-)
-                    alertAndFinish()
-                    return
-                }
-            }
-            // Se chegou aqui está OK :-)
-        }
+    //### listener for disconnect
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        private fun alertAndFinish() {
-            run {
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle(R.string.app_name).setMessage("Para utilizar este aplicativo, você precisa aceitar as permissões.")
-                // Add the buttons
-                builder.setPositiveButton("OK") { dialog, id -> finish() }
-                val dialog = builder.create()
-                dialog.show()
+        for (result in grantResults) {
+            if (result == PackageManager.PERMISSION_DENIED) {
+                // Alguma permissão foi negada, agora é com você :-)
+                alertAndFinish()
+                return
             }
         }
+        // Se chegou aqui está OK :-)
+    }
 
-
-
-        override fun onConnectionSuspended(cause: Int) {
-            toast("Conexão interrompida.")
+    private fun alertAndFinish() {
+        run {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.app_name)
+                .setMessage("Para utilizar este aplicativo, você precisa aceitar as permissões.")
+            // Add the buttons
+            builder.setPositiveButton("OK") { dialog, id -> finish() }
+            val dialog = builder.create()
+            dialog.show()
         }
-
-        override fun onConnectionFailed(connectionResult: ConnectionResult) {
-            toast("Erro ao conectar: " + connectionResult)
-        }
-
-        private fun toast(s: String) {
-            Toast.makeText(baseContext, s, Toast.LENGTH_SHORT).show()
-        }
+    }
 
 
+    override fun onConnectionSuspended(cause: Int) {
+        toast("Conexão interrompida.")
+    }
 
-        companion object {
-            private val TAG = "Clean"
-        }
+    override fun onConnectionFailed(connectionResult: ConnectionResult) {
+        toast("Erro ao conectar: " + connectionResult)
+    }
+
+    private fun toast(s: String) {
+        Toast.makeText(baseContext, s, Toast.LENGTH_SHORT).show()
+    }
 
 
+    companion object {
+        private val TAG = "Clean"
+    }
+
+
+    override fun onDestroy() {
+         mAuth.signOut()
+        super.onDestroy()
+    }
 
 }
