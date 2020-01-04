@@ -129,8 +129,6 @@ class MainActivity : BaseActivity(), GoogleApiClient.ConnectionCallbacks, Google
         }
 
         override fun onConnected(bundle: Bundle?) {
-            toast("Conectado no Google Play Services!")
-
             // Inicia o GPS
             startLocationUpdates()
         }

@@ -12,6 +12,7 @@ import com.fiap18Mob.clean.view.cleanerDetail.CleanerDetailViewModel
 import com.fiap18Mob.clean.view.forgotpassword.ForgotPasswordViewModel
 import com.fiap18Mob.clean.view.listServices.ListServicesViewModel
 import com.fiap18Mob.clean.view.login.LoginViewModel
+import com.fiap18Mob.clean.view.maps.MapsViewModel
 import com.fiap18Mob.clean.view.serviceDetail.ServiceDetailViewModel
 import com.fiap18Mob.clean.view.signup.SignUpViewModel
 import com.fiap18Mob.clean.view.usersList.UsersListViewModel
@@ -33,6 +34,7 @@ val viewModelModule = module {
     viewModel { ListServicesViewModel(get()) }
     viewModel { UsersListViewModel(get()) }
     viewModel { ServiceDetailViewModel(get()) }
+    viewModel { MapsViewModel(get()) }
 }
 
 val uiModule = module {
