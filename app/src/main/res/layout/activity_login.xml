@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".view.login.LoginActivity">
 
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -27,6 +31,7 @@
         android:id="@+id/btCrash"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
         android:background="#FFFFFF"
         android:text="@string/crash_me"
@@ -34,7 +39,8 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btSingupCleaner" />
 
     <Button
         android:id="@+id/btSingupClient"
@@ -127,6 +133,8 @@
         app:layout_constraintTop_toTopOf="@+id/btEnter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 
     <include layout="@layout/include_loading"/>
     <include layout="@layout/include_welcome_message"/>
