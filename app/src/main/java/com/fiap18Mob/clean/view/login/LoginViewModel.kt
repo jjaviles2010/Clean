@@ -22,7 +22,7 @@ class LoginViewModel (val mAuth: FirebaseAuth,
     fun initialAuth() {
         //ATENÇÃO: remover esta linha. Ela está ai para forçar um login todas as vezes que o app é aberto
         //Perguntar para o Heider, porque mesmo que exclua ou inative o usuário no Firebase, o login continua ativo.
-        mAuth.signOut()
+        //mAuth.signOut()
 
         //Tentativa de forçar a atualização do usuário (comentário acima), mas continua da msm forma.
         mAuth.currentUser?.reload()
@@ -44,8 +44,9 @@ class LoginViewModel (val mAuth: FirebaseAuth,
         ).addOnCompleteListener {
             authorized.value = it.isSuccessful
             if (!it.isSuccessful) {
-                firebaseSaveToken()
                 messageError.value = it.exception?.message
+            } else {
+                firebaseSaveToken()
             }
             isLoading.value = false
         }
