@@ -1,7 +1,10 @@
 package com.fiap18Mob.clean.view.maps
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -21,10 +24,6 @@ import com.fiap18Mob.clean.utils.PermissionUtils
 import com.fiap18mob.mylib.CustomToast
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -32,6 +31,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.*
 import java.text.DateFormat
 import java.util.*
@@ -43,6 +44,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
     private var mGoogleApiClient: GoogleApiClient? = null
     val mapsViewModel: MapsViewModel by viewModel()
     val customToast: CustomToast by inject()
+
+    private lateinit var locCallback: LocationCallback
+    private lateinit var locRequest: LocationRequest
+    private var locationUpdateState = false
+
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        private const val REQUEST_CHECK_SETTINGS = 2
+    }
 
     lateinit var cleanerList: List<User>
 
@@ -68,8 +78,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
-
         configureObservers()
+
+        createLocationRequest()
     }
 
     private fun configureObservers() {
@@ -114,7 +125,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
     }
 
     override fun onMapReady(map: GoogleMap) {
-        Log.d(TAG, "onMapReady: " + map)
         this.map = map
 
         // Configura o tipo do mapa
@@ -157,8 +167,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
             val update = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
             map?.animateCamera(update)
 
-            Log.d(TAG, "setMapLocation: " + l)
-
             // Desenha uma bolinha vermelha
             val circle = CircleOptions().center(latLng)
             circle.fillColor(Color.RED)
@@ -187,18 +195,40 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
 
     @SuppressLint("MissingPermission")
     private fun startLocationUpdates() {
-        Log.d(TAG, "startLocationUpdates()")
-        val locRequest = LocationRequest.create()
-        locRequest.interval = 60000
-        locRequest.fastestInterval = 5000
-        locRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-
         val locClient = LocationServices.getFusedLocationProviderClient(this)
         locClient.requestLocationUpdates(locRequest, locationCallback, Looper.myLooper())
     }
 
+    private fun createLocationRequest() {
+        locRequest = LocationRequest.create()
+        locRequest.interval = 60000
+        locRequest.fastestInterval = 5000
+        locRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+
+        val builder = LocationSettingsRequest.Builder()
+            .addLocationRequest(locRequest)
+
+        val client = LocationServices.getSettingsClient(this)
+        val task = client.checkLocationSettings(builder.build())
+
+        task.addOnSuccessListener {
+            locationUpdateState = true
+            startLocationUpdates()
+        }
+        task.addOnFailureListener { e ->
+            if (e is ResolvableApiException) {
+                try {
+                    e.startResolutionForResult(this@MapsActivity,
+                        REQUEST_CHECK_SETTINGS)
+                } catch (sendEx: IntentSender.SendIntentException) {
+                    // Ignore the error.
+                }
+            }
+        }
+    }
+
+
     private fun stopLocationUpdates() {
-        Log.d(TAG, "stopLocationUpdates()")
         val locClient = LocationServices.getFusedLocationProviderClient(this)
         locClient.removeLocationUpdates(locationCallback)
     }
@@ -212,7 +242,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
         }
     }
 
-    companion object {
-        private val TAG = "Clean"
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CHECK_SETTINGS) {
+            if (resultCode == Activity.RESULT_OK) {
+                locationUpdateState = true
+                startLocationUpdates()
+            }
+        }
     }
+
 }
