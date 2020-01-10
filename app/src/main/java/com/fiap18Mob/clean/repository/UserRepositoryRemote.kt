@@ -113,11 +113,26 @@ class UserRepositoryRemote (val firebaseAuth: FirebaseAuth,
             }
     }
 
-    fun getCleaningServices(
-        onComplete: (List<CleaningService>?) -> Unit,
+    fun deleteCleaningService(
+        cleaningService: CleaningService, onComplete: (Boolean?) -> Unit,
         onError: (Throwable?) -> Unit
     ) {
-        var servicesResult: MutableList<CleaningService> = mutableListOf()
+        firebaseDB.getReference("$firebaseReferenceUserNode/${firebaseAuth.currentUser?.uid}/$firebaseReferenceCleaningServiceNode/${cleaningService.id}")
+            .removeValue()
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    onComplete(true)
+                } else {
+                    onError(it.exception)
+                }
+            }
+    }
+
+    fun getCleaningServices(
+        onComplete: (ArrayList<CleaningService>?) -> Unit,
+        onError: (Throwable?) -> Unit
+    ) {
+        var servicesResult: ArrayList<CleaningService> = ArrayList()
         var service: CleaningService = CleaningService()
 
         firebaseDB.getReference("$firebaseReferenceUserNode/${firebaseAuth.currentUser?.uid}/$firebaseReferenceCleaningServiceNode")

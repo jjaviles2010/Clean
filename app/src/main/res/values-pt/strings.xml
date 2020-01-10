@@ -70,4 +70,5 @@
     <string name="CANCELED">CANCELADO</string>
     <string name="DONE">FEITO</string>
     <string name="btAbout">Sobre</string>
+    <string name="serviceDeletedMsg">Serviço deletado da agenda!</string>
 </resources>

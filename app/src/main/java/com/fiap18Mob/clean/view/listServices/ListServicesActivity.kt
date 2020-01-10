@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.fiap18Mob.clean.BaseActivity
 import com.fiap18Mob.clean.R
 import com.fiap18Mob.clean.view.serviceDetail.ServiceDetailActivity
@@ -50,5 +52,39 @@ class ListServicesActivity : BaseActivity() {
 
             rvListServices.layoutManager = LinearLayoutManager(this)
         })
+
+        listServicesViewModel.isDeleted.observe(this, Observer {
+            if (it == true) {
+                customToast.showToast(this, getString(R.string.serviceDeletedMsg), CustomToast.INFO)
+            }
+        })
+
+        setRecyclerViewItemTouchListener()
+    }
+
+    private fun setRecyclerViewItemTouchListener() {
+        val simpleItemTouchCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+
+                if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
+                    listServicesViewModel.deleteCleaningServices(listServicesViewModel.services.value!![position])
+                    listServicesViewModel.services.value?.removeAt(position)
+                    rvListServices.adapter!!.notifyItemRemoved(position)
+                }
+            }
+
+        }
+
+        val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
+        itemTouchHelper.attachToRecyclerView(rvListServices)
     }
 }

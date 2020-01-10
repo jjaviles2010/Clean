@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.services_list_item.view.*
 import java.util.*
 
 class ListServicesAdapter(
-    val services: List<CleaningService>,
+    val services: ArrayList<CleaningService>,
     val clickListener: (CleaningService) -> Unit
 ) : RecyclerView.Adapter<ListServicesAdapter.ServiceViewHolder>() {
 

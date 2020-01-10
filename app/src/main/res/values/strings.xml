@@ -70,4 +70,5 @@
     <string name="OPENED">OPENED</string>
     <string name="CANCELED">CANCELED</string>
     <string name="DONE">DONE</string>
+    <string name="serviceDeletedMsg">Service deleted from the schedule!</string>
 </resources>
